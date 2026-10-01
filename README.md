@@ -20,6 +20,10 @@ npm run dev
 
 ## 공개 준비
 
+GitHub: https://github.com/Park-gunsoo/shoplayerHP
+
+Vercel 프로젝트는 parkgunsoo-s-projects/shoplayerhp이며 저장소 main 브랜치와 연결했습니다. 변경을 main에 올리면 운영 배포가 생성됩니다. 실제 배포 상태와 주소는 Vercel 대시보드에서 확인할 수 있습니다.
+
 `.env.example`의 `SITE_URL`에 최종 공개 도메인, `CONTACT_EMAIL`에 실제 수신 가능한 공개 이메일을 설정한 뒤 다시 빌드합니다. 이메일이 없으면 신청 폼은 작성 내용을 복사하며 자동 접수하지 않습니다. 도메인과 이메일이 모두 설정되기 전에는 검색 색인을 허용하지 않습니다.
 
 단일 **상품 피드 링크**가 사이트의 고객 설명입니다. 현재 내부 앱의 확인된 입력 형식은 **Cafe24 Meta TSV 링크**입니다. 다른 피드 형식의 즉시 연결을 약속하지 않습니다. 여섯 채널용 피드 게시와 해당 플랫폼의 수신·승인·노출은 별도 단계입니다.
