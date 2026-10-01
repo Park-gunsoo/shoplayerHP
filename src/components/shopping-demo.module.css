@@ -1,0 +1,108 @@
+.demo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 570px;
+  overflow: hidden;
+  border: 1px solid rgba(199, 214, 238, 0.85);
+  border-radius: 28px;
+  color: #1d2b43;
+  background: #fbfcff;
+  box-shadow: 0 34px 85px rgba(2, 12, 43, 0.3), 0 3px 14px rgba(8, 34, 89, 0.1);
+}
+
+.windowBar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 57px;
+  padding: 0 20px;
+  border-bottom: 1px solid #e8edf4;
+  background: #fff;
+}
+
+.windowIdentity { display: flex; align-items: center; gap: 9px; font-size: 13px; }
+.windowIdentity strong { font-weight: 800; }
+.symbol, .assistantIcon, .greetingIcon { display: grid; flex: none; place-items: center; border-radius: 50%; }
+.symbol { width: 27px; height: 27px; color: #fff; background: #142f70; }
+.demoBadge { padding: 5px 9px; border-radius: 999px; color: #8c490f; background: #fff0df; font-size: 10px; font-weight: 800; }
+
+.viewport {
+  flex: 1;
+  min-height: 0;
+  padding: 24px 20px 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: radial-gradient(circle at 50% 0, #ffffff 0, #f8faff 58%, #f2f6fd 100%);
+  scrollbar-width: thin;
+  scrollbar-color: #c4d1e5 transparent;
+  transition: opacity 550ms ease;
+}
+.viewportFaded { opacity: 0.12; }
+.greeting { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 8px 0 23px; color: #3d527a; font-size: 14px; font-weight: 800; }
+.greetingIcon { width: 37px; height: 37px; color: #27509d; background: #e7efff; }
+.previewShelf { margin: 45px auto 24px; max-width: 390px; color: #70809b; text-align: center; font-size: 10px; font-weight: 750; animation: riseIn 450ms both; }
+.previewShelf > div { display: flex; justify-content: center; gap: 9px; margin-top: 11px; }
+.previewShelf img { width: 29%; height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid #e2e9f3; border-radius: 12px; opacity: .58; filter: saturate(.75); box-shadow: 0 8px 18px rgba(25, 48, 88, .05); }
+.userMessage { width: fit-content; max-width: 89%; margin: 0 0 24px auto; padding: 12px 15px; border-radius: 17px 17px 5px 17px; color: #fff; background: #142d6d; font-size: 13px; font-weight: 650; line-height: 1.55; animation: riseIn 420ms both; }
+.assistantRow { display: flex; align-items: flex-start; gap: 10px; width: 100%; padding-bottom: 4px; animation: riseIn 420ms both; }
+.assistantIcon { width: 27px; height: 27px; color: #fff; background: #be5a11; }
+.assistantContent { min-width: 0; flex: 1; }
+.thinking { display: flex; align-items: center; gap: 7px; min-height: 27px; color: #52627b; font-size: 12px; }
+.dots { display: flex; gap: 3px; }
+.dots i { width: 4px; height: 4px; border-radius: 50%; background: #687eaa; animation: bounce 850ms ease-in-out infinite alternate; }
+.dots i:nth-child(2) { animation-delay: 180ms; }
+.dots i:nth-child(3) { animation-delay: 360ms; }
+.answer { margin: 1px 0 7px; font-size: 13px; font-weight: 800; }
+.intent { display: inline-flex; margin: 0 0 15px; padding: 5px 8px; border-radius: 999px; color: #355e9e; background: #e7efff; font-size: 10px; font-weight: 700; }
+
+.resultList { display: flex; gap: 9px; width: 100%; overflow-x: auto; padding: 1px 1px 8px; scrollbar-width: thin; scrollbar-color: #c7d2e6 transparent; }
+.productCard { flex: 0 0 142px; min-width: 0; overflow: hidden; border: 1px solid #e4eaf2; border-radius: 14px; background: #fff; box-shadow: 0 8px 22px rgba(19, 43, 89, 0.07); animation: riseIn 500ms both; }
+.productImage { overflow: hidden; height: 122px; background: #f8f5ef; }
+.productImage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.productInfo { display: flex; flex-direction: column; min-height: 106px; padding: 8px 9px 10px; line-height: 1.25; }
+.exampleLabel { color: #a46a33; font-size: 9px; font-weight: 800; }
+.productInfo strong { margin-top: 5px; color: #1b2d4b; font-size: 11px; font-weight: 800; line-height: 1.28; }
+.detail { margin-top: 4px; color: #687793; font-size: 9px; }
+.productInfo b { margin-top: auto; padding-top: 8px; color: #0e2c71; font-size: 14px; }
+
+.composer { display: flex; flex: none; align-items: center; gap: 12px; min-height: 49px; margin: 8px 15px 8px; padding: 5px 6px 5px 15px; border: 1px solid #dfe7f2; border-radius: 999px; background: #fff; box-shadow: 0 2px 10px rgba(24, 44, 81, 0.04); }
+.composer > span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
+.typed { color: #273a5c; }
+.typed::after { display: inline-block; width: 1px; height: 1em; margin-left: 2px; background: #153c85; content: ""; vertical-align: -2px; animation: cursor 750ms step-end infinite; }
+.placeholder { color: #8792a3; }
+.sendIcon { display: grid; flex: none; width: 35px; height: 35px; place-items: center; border-radius: 50%; color: #fff; background: #172f69; }
+.demoFooter { display: flex; flex: none; align-items: center; justify-content: flex-end; gap: 12px; min-height: 39px; padding: 0 16px 9px; color: #64738b; }
+.disclaimer { max-width: 82%; font-size: 9px; line-height: 1.25; }
+.controls { display: flex; flex: none; gap: 5px; }
+.controls button { display: grid; width: 25px; height: 25px; place-items: center; border: 1px solid #dce5f1; border-radius: 50%; color: #455d82; background: #fff; cursor: pointer; }
+.controls button:hover:not(:disabled) { color: #10245e; border-color: #95b3e0; }
+.controls button:disabled { opacity: 0.45; cursor: default; }
+
+@keyframes riseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { to { opacity: .3; transform: translateY(-3px); } }
+@keyframes cursor { 50% { opacity: 0; } }
+
+@media (max-width: 700px) {
+  .demo { height: 530px; border-radius: 23px; }
+  .viewport { padding-inline: 15px; }
+  .productCard { flex-basis: 150px; }
+  .productImage { height: 132px; }
+  .disclaimer { font-size: 9px; }
+}
+
+@media (max-width: 420px) {
+  .demo { height: 500px; }
+  .windowBar { padding-inline: 13px; }
+  .viewport { padding: 17px 12px 10px; }
+  .greeting { margin-top: 3px; }
+  .productCard { flex-basis: 145px; }
+  .productImage { height: 119px; }
+  .composer { margin-inline: 10px; }
+  .demoFooter { padding-inline: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport, .userMessage, .assistantRow, .productCard, .dots i, .typed::after { animation: none !important; transition: none !important; }
+}
