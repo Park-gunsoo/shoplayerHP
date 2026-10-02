@@ -35,17 +35,12 @@ export default function FeedConnections({ diagramRef, running, cycle }: { diagra
         [.28, .5, .72].forEach((fraction) => paths.push(curve(s.right + 1, s.top + s.height * fraction, d.left - 3, d.top + d.height * fraction)));
         const sx = d.right + 1, sy = d.top + d.height * .5;
         cards.forEach((card, index) => {
-          const firstColumn = index % 2 === 0;
-          if (firstColumn) {
-            paths.push(curve(sx, sy, card.left - 3, card.top + card.height * .5));
-          } else {
-            const bottom = index === cards.length - 1;
-            const routeY = bottom ? card.bottom + 22 : card.top - (index === 1 ? 22 : 9);
-            const ex = card.left + card.width * .5;
-            const ey = bottom ? card.bottom + 2 : card.top - 2;
-            const bend = Math.min(16, Math.abs(routeY - ey));
-            paths.push("M " + sx + " " + sy + " C " + (sx + 28) + " " + sy + " " + (sx + 22) + " " + routeY + " " + (sx + 52) + " " + routeY + " H " + (ex - bend) + " Q " + ex + " " + routeY + " " + ex + " " + (routeY + (bottom ? -bend : bend)) + " L " + ex + " " + ey);
-          }
+          const rowStart = cards[index - index % 2];
+          const ey = rowStart.top + rowStart.height * .5;
+          // Both destinations share the row's entry path. The second branch
+          // runs behind the opaque card surface and appears only in the gap.
+          const entry = curve(sx, sy, rowStart.left - 3, ey);
+          paths.push(index % 2 === 0 ? entry : entry + " H " + (card.left - 3));
         });
       } else {
         const sx = s.left + s.width * .5, sy = s.bottom + 2;

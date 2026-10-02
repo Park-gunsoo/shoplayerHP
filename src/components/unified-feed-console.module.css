@@ -45,7 +45,7 @@
 .connectionPath { fill: none; stroke: #7d9ed3; stroke-width: 1.2; opacity: .65; }
 .stepLabel { display: flex; align-items: center; gap: 8px; color: #4b67a0; font-size: 11px; font-weight: 850; letter-spacing: .08em; }
 .stepLabel > span { display: grid; width: 25px; height: 25px; flex: none; place-items: center; border: 1px solid #b9cff5; border-radius: 7px; background: #eaf1ff; color: #1747a0; font-size: 10px; letter-spacing: 0; }
-.source h3, .data h3, .channels h3 { min-height: 52px; margin: 12px 0 14px; color: #11265e; font-size: clamp(17px, 1.75vw, 22px); line-height: 1.35; letter-spacing: -.035em; word-break: keep-all; }
+.source h3, .data h3, .channels h3 { min-height: 60px; margin: 12px 0 14px; color: #11265e; font-size: clamp(17px, 1.75vw, 22px); line-height: 1.35; letter-spacing: -.035em; word-break: keep-all; }
 .source p, .data p, .channels p { margin: 12px 0 0; color: #536682; font-size: 12px; line-height: 1.6; word-break: keep-all; }
 
 .sourceUrl { display: flex; align-items: center; gap: 7px; height: 38px; padding: 0 11px; border: 1px solid #d6e3f5; border-radius: 9px; background: #fff; color: #3a5689; font-size: 11px; font-weight: 750; }
@@ -63,7 +63,7 @@
 .inView .signal:nth-of-type(4)::after { animation-delay: 0.7667s; }
 
 .data { padding-inline: 6px; }
-.dataSheet { overflow: hidden; border: 1px solid #bfd0ec; border-radius: 15px; background: #fff; box-shadow: 0 11px 28px rgba(20, 54, 113, .09); }
+.dataSheet { display: flex; flex-direction: column; min-height: 228px; overflow: hidden; border: 1px solid #bfd0ec; border-radius: 15px; background: #fff; box-shadow: 0 11px 28px rgba(20, 54, 113, .09); }
 .dataTop { display: flex; align-items: center; gap: 11px; padding: 12px; border-bottom: 1px solid #e8edf5; background: #f5f8ff; }
 .productThumb { position: relative; width: 56px; height: 56px; flex: none; overflow: hidden; border-radius: 8px; background: #ebe7df; }
 .productThumb img { object-fit: cover; object-position: center 42%; }
@@ -71,7 +71,7 @@
 .dataTop div:nth-child(2) span { color: #61738f; font-size: 10px; font-weight: 700; }
 .dataTop div:nth-child(2) strong { margin-top: 3px; color: #173578; font-size: 13px; word-break: keep-all; }
 .databaseIcon { flex: none; margin-left: auto; color: #3c68bd; }
-.fieldGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; padding: 8px 13px 10px; }
+.fieldGrid { display: grid; flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(32px, 1fr)); gap: 0 12px; padding: 8px 13px 10px; }
 .field { display: flex; align-items: center; gap: 7px; min-width: 0; min-height: 32px; border-bottom: 1px solid #eef2f8; color: #385275; font-size: 11px; font-weight: 730; white-space: nowrap; }
 .field:nth-last-child(-n+2) { border-bottom: 0; }
 .fieldDot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: #45a99c; }
@@ -83,19 +83,20 @@
 .inView .field:nth-child(6) { animation-delay: 0.4333s; }
 
 .channels { padding-left: 6px; }
-.channelGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; margin: 0; padding: 26px 8px 28px; list-style: none; }
-.channel { display: flex; align-items: center; min-width: 0; min-height: 75px; gap: 8px; padding: 8px; border: 1px solid #dae3f1; border-radius: 11px; background: #fff; box-shadow: 0 3px 12px rgba(16,36,94,.035); }
+.channelGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(68px, 1fr)); min-height: 228px; gap: 12px 18px; margin: 0; padding: 0; list-style: none; }
+.channel { display: flex; align-items: center; min-width: 0; min-height: 68px; gap: 8px; padding: 8px; border: 1px solid #dae3f1; border-radius: 11px; background: #fff; box-shadow: 0 3px 12px rgba(16,36,94,.035); }
 .logo { display: grid; width: 34px; height: 34px; flex: none; place-items: center; border-radius: 8px; background: #f4f7fb; }
 .channelText { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
 .channelText strong { color: #162b58; font-size: 11px; font-weight: 850; overflow-wrap: anywhere; }
 .channelText small { margin-top: 4px; color: #60718c; font-size: 10px; line-height: 1.25; overflow-wrap: anywhere; }
-.inView .channel { animation: channelReveal 0.2667s ease-out both; }
-.inView .channel:nth-child(1) { animation-delay: 0.7667s; }
-.inView .channel:nth-child(2) { animation-delay: 0.8333s; }
-.inView .channel:nth-child(3) { animation-delay: 0.9s; }
-.inView .channel:nth-child(4) { animation-delay: 0.9667s; }
-.inView .channel:nth-child(5) { animation-delay: 1.0333s; }
-.inView .channel:nth-child(6) { animation-delay: 1.1s; }
+.inView .channelText { animation: channelReveal 0.2667s ease-out both; }
+.inView .channel:nth-child(1) .channelText { animation-delay: 0.7667s; }
+.inView .channel:nth-child(2) .channelText { animation-delay: 0.8333s; }
+.inView .channel:nth-child(3) .channelText { animation-delay: 0.9s; }
+.inView .channel:nth-child(4) .channelText { animation-delay: 0.9667s; }
+.inView .channel:nth-child(5) .channelText { animation-delay: 1.0333s; }
+.inView .channel:nth-child(6) .channelText { animation-delay: 1.1s; }
+.console[data-paused="true"] .channelText, .console[data-paused="true"] .field { animation: none; }
 
 .operations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid #dce5f3; background: #eff4fd; }
 .operations > div { display: flex; align-items: center; gap: 11px; min-width: 0; min-height: 70px; padding: 13px 24px; }
@@ -139,6 +140,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .inView .signal::after, .inView .field, .inView .channel { animation: none; }
+  .inView .signal::after, .inView .field, .inView .channelText { animation: none; }
   .signal::after { display: none; }
 }

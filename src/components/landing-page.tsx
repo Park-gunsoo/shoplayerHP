@@ -223,8 +223,8 @@ export default function LandingPage({ locale }: { locale: Locale }) {
             <SectionHeading
               number="07 / 08"
               eyebrow="HOW SHOPLAYER WORKS"
-              title={locale === "ko" ? "ShopLayer는 AI와 사람이 함께 운영합니다." : "ShopLayerは、AIと人が一緒に運用します。"}
-              description={locale === "ko" ? "사이트와 상품 데이터를 연결하면 AI가 분석하고, ShopLayer 운영팀이 검수·승인합니다. 사이트 개선과 상품·채널 운영의 두 흐름을 정기 모니터링으로 이어가며, 발견한 변화를 다음 개선에 반영합니다." : "サイトと商品データを接続するとAIが分析し、ShopLayerの担当者が確認・承認します。サイト改善と商品・チャネル運用を定期モニタリングで支え、見つけた変化を次の改善へつなげます。"}
+              title={locale === "ko" ? "ShopLayer의 운영은 이렇게 이어집니다." : "ShopLayerの運用は、こうつながります。"}
+              description={locale === "ko" ? "등록과 연동에서 진단, 최적화, 캠페인 운영까지. AI와 ShopLayer 운영팀이 쇼핑몰과 상품 데이터를 함께 관리하고, 모니터링에서 찾은 변화를 다음 개선으로 이어갑니다." : "登録・連携から診断、最適化、広告運用まで。AIとShopLayerの担当者がサイトと商品データを一緒に管理し、モニタリングで見つけた変化を次の改善につなげます。"}
               id="operations-title"
             />
             <OperationsFlow locale={locale} />
