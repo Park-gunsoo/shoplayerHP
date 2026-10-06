@@ -145,12 +145,6 @@ main { display: block; }
 .section-title { max-width: 880px; margin: 0; font-size: clamp(35px, 4.4vw, 62px); font-weight: 800; letter-spacing: -.05em; line-height: 1.31; text-wrap: balance; word-break: keep-all; }
 .section-description { max-width: 740px; margin: 25px 0 0; color: var(--muted); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.75; word-break: keep-all; }
 .section-head { margin-bottom: 50px; }
-.section-head--concept { position: relative; padding-right: 375px; }
-.section-concept-art { position: absolute; right: -4px; top: 50%; width: 355px; height: 310px; transform: translateY(-43%); opacity: .38; filter: saturate(.74) blur(.65px); pointer-events: none; mask-image: radial-gradient(ellipse at center, #000 42%, transparent 74%); }
-.section-concept-art img { object-fit: contain; }
-.concept-platform { position: absolute; display: grid; place-items: center; width: 69px; height: 69px; border: 1px solid #d9e4f0; border-radius: 19px; background: #ffffffec; box-shadow: 0 9px 24px #54749912; }
-.concept-platform--google { top: 13%; left: 13%; transform: rotate(-9deg); }
-.concept-platform--naver { right: 12%; bottom: 15%; transform: rotate(7deg); }
 .faq-heading-brand { display: block; white-space: nowrap; }
 .faq-layout .section-title { text-wrap: initial; }
 .section-head--split { display: flex; align-items: end; justify-content: space-between; gap: 36px; }
@@ -507,13 +501,7 @@ main { display: block; }
   .hero-title { font-size: clamp(44px, 5vw, 64px); }
   .platform-card { padding: 24px; }
 }
-@media (min-width: 901px) and (max-width: 1100px) {
-  .section-head--concept { padding-right: 295px; }
-  .section-concept-art { width: 280px; height: 260px; }
-}
 @media (max-width: 900px) {
-  .section-head--concept { padding-right: 0; }
-  .section-concept-art { display: none; }
   .header-inner, .section-inner, .hero-inner, .closing-inner, .footer-inner { width: min(calc(100% - 48px), var(--max-width)); }
   .header-inner { min-height: 70px; }
   .header-nav { justify-content: flex-end; overflow-x: auto; scrollbar-width: none; }
