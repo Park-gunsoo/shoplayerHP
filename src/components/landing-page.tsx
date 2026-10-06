@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { ReactNode } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -24,6 +25,7 @@ import LanguageSwitch from "./language-switch";
 import NewsCarousel from "./news-carousel";
 import OperationsFlow from "./operations-flow";
 import ShoppingDemo from "./shopping-demo";
+import SectionConceptArt, { type SectionConcept } from "./section-concept-art";
 import UnifiedFeedConsole from "./unified-feed-console";
 
 const aiSearchGuide = "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide";
@@ -34,19 +36,22 @@ function SectionHeading({
   description,
   number,
   id,
+  concept,
 }: {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description: string;
   number: string;
   id?: string;
+  concept?: SectionConcept;
 }) {
   return (
-    <div className="section-head">
+    <div className={concept ? "section-head section-head--concept" : "section-head"}>
       <span className="section-number" aria-hidden="true">{number}</span>
       <p className="section-kicker">{eyebrow}</p>
       <h2 className="section-title" id={id}>{title}</h2>
       <p className="section-description">{description}</p>
+      {concept ? <SectionConceptArt concept={concept} /> : null}
     </div>
   );
 }
@@ -135,7 +140,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
 
         <section className="section platform-section" id="platforms" aria-labelledby="platforms-title">
           <div className="section-inner">
-            <SectionHeading number="02 / 08" eyebrow={content.platforms.eyebrow} title={content.platforms.title} description={content.platforms.description} id="platforms-title" />
+            <SectionHeading number="02 / 08" eyebrow={content.platforms.eyebrow} title={content.platforms.title} description={content.platforms.description} id="platforms-title" concept="market" />
             {content.platforms.note ? <p className="evidence-note"><Info aria-hidden="true" />{content.platforms.note}</p> : null}
             <div className="platform-grid">
               {content.platforms.cards.map((card, index) => (
@@ -213,7 +218,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
 
         <section className="section feed-section" id="feed" aria-labelledby="feed-title">
           <div className="section-inner">
-            <SectionHeading number="06 / 08" eyebrow={content.feed.eyebrow} title={content.feed.title} description={content.feed.description} id="feed-title" />
+            <SectionHeading number="06 / 08" eyebrow={content.feed.eyebrow} title={content.feed.title} description={content.feed.description} id="feed-title" concept="feed" />
             <UnifiedFeedConsole locale={locale} feed={content.feed} />
           </div>
         </section>
@@ -226,6 +231,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
               title={locale === "ko" ? "ShopLayer의 운영은 이렇게 이어집니다." : "ShopLayerの運用は、こうつながります。"}
               description={locale === "ko" ? "등록과 연동에서 진단, 최적화, 캠페인 운영까지. AI와 ShopLayer 운영팀이 쇼핑몰과 상품 데이터를 함께 관리하고, 모니터링에서 찾은 변화를 다음 개선으로 이어갑니다." : "登録・連携から診断、最適化、広告運用まで。AIとShopLayerの担当者がサイトと商品データを一緒に管理し、モニタリングで見つけた変化を次の改善につなげます。"}
               id="operations-title"
+              concept="process"
             />
             <OperationsFlow locale={locale} />
           </div>
@@ -233,7 +239,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
 
         <section className="section faq-section" id="faq" aria-labelledby="faq-title">
           <div className="section-inner faq-layout">
-            <SectionHeading number="08 / 08" eyebrow={content.faq.eyebrow} title={content.faq.title} description={content.faq.description} id="faq-title" />
+            <SectionHeading number="08 / 08" eyebrow={content.faq.eyebrow} title={<><span className="faq-heading-brand">ShopLayer</span>{content.faq.title.slice("ShopLayer".length)}</>} description={content.faq.description} id="faq-title" />
             <div className="faq-list">
               {content.faq.items.map((item, index) => (
                 <details className="faq-item" key={item.question}>
