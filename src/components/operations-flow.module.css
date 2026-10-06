@@ -6,27 +6,26 @@
 .liveDot { width: 7px; height: 7px; border-radius: 50%; background: #2d86d6; box-shadow: 0 0 0 4px #e4efff; flex: none; }
 .journey { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 30px 28px 28px; margin: 0; list-style: none; }
 .stage { position: relative; min-width: 0; padding: 0 var(--step-pad); }
-.stage:first-child { padding-left: 0; }
-.stage:last-child { padding-right: 0; }
-.stage:not(:last-child) .stageHeading::before { position: absolute; z-index: -1; top: 50%; left: calc(var(--step-size) / 2); right: calc(-2 * var(--step-pad) - var(--step-size) / 2); height: 2px; transform: translateY(-50%); background: var(--line); content: ""; }
+.stage:not(:last-child) .stageHeading::before { position: absolute; z-index: -1; top: calc(var(--step-size) / 2); left: 50%; right: calc(-50% - 2 * var(--step-pad)); height: 2px; transform: translateY(-50%); background: var(--line); content: ""; }
 .stage[data-complete="true"] .stageHeading::before, .stage[data-complete="true"]::after { background: #8bafed; }
 .stageHeading { position: relative; z-index: 1; margin: 0; }
-.stageHeading button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+.stageHeading button { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; min-height: 52px; padding: 0; border: 0; background: transparent; color: inherit; text-align: center; cursor: pointer; }
 .number { display: grid; place-items: center; width: var(--step-size); height: var(--step-size); flex: none; border: 1px solid #d0def1; border-radius: 50%; background: #f0f5fe; color: #567bb5; font-size: 17px; font-weight: 850; font-variant-numeric: tabular-nums; transition: background .2s, color .2s, box-shadow .2s; }
 .stage[data-active="true"] .number { border-color: var(--blue); background: var(--blue); color: #fff; box-shadow: 0 0 0 5px #e9f0ff; }
 .stage[data-complete="true"] .number { border-color: #b7cef1; color: var(--blue); }
-.stageHeading button > span:last-child { display: block; padding-right: 5px; background: #fff; }
-.stageHeading small { color: #7890af; font-size: 10px; font-weight: 750; letter-spacing: .08em; }
+.stageHeading button > span:last-child { display: block; }
+.stageHeading small { display: block; color: #7890af; font-size: 10px; font-weight: 750; line-height: 1.2; letter-spacing: .08em; }
 .stageHeading strong { display: block; margin-top: 3px; font-size: clamp(18px, 1.5vw, 22px); font-weight: 850; line-height: 1.4; letter-spacing: -.045em; word-break: keep-all; }
 .stage[data-active="true"] .stageHeading strong, .stage[data-active="true"] .stageHeading small { color: var(--blue); }
-.description { min-height: 66px; margin: 20px 0 15px; color: #5d7392; font-size: 14px; line-height: 1.65; letter-spacing: -.015em; word-break: keep-all; }
+.description { min-height: 66px; margin: 16px 0 15px; color: #5d7392; font-size: 14px; line-height: 1.65; letter-spacing: -.015em; word-break: keep-all; }
+.sceneWrap { position: relative; }
 .scene { position: relative; height: 158px; overflow: hidden; border: 1px solid #e2eaf6; border-radius: 15px; background: linear-gradient(140deg, #f6f9ff, #edf3fc); transition: border-color .2s, box-shadow .2s; }
 .stage[data-active="true"] .scene { border-color: #a8c6f4; box-shadow: 0 6px 22px #2c65b40e; }
 .tasks { display: grid; gap: 10px; padding: 0; margin: 19px 0 0; list-style: none; }
 .tasks li { display: flex; gap: 7px; align-items: flex-start; color: #3e587b; font-size: 13px; line-height: 1.55; word-break: keep-all; }
 .tasks svg { flex: none; margin-top: 3px; color: #7798c4; }
 .stage[data-active="true"] .tasks svg { color: var(--blue); }
-.nextArrow { position: absolute; z-index: 2; display: grid; place-items: center; top: 225px; right: -13px; width: 27px; height: 27px; border: 1px solid #d4e2f5; border-radius: 50%; background: #fff; color: #6588ba; }
+.nextArrow { position: absolute; z-index: 2; display: grid; place-items: center; top: 50%; right: calc(-1 * var(--step-pad) - 13.5px); width: 27px; height: 27px; transform: translateY(-50%); border: 1px solid #d4e2f5; border-radius: 50%; background: #fff; color: #6588ba; }
 .stage[data-active="true"] .nextArrow { color: var(--blue); border-color: #92b6eb; }
 .connection { display: flex; align-items: center; justify-content: center; height: 100%; padding: 15px 10px; }
 .sources { position: relative; z-index: 1; display: grid; gap: 14px; min-width: 0; flex: 1; }
@@ -110,10 +109,8 @@
 @media (max-width: 1200px) {
   .board { --step-pad: 13px; --step-size: 39px; }
   .journey { padding-inline: 23px; }
-  .stageHeading button { gap: 8px; }
   .number { font-size: 15px; }
   .description { min-height: 92px; }
-  .nextArrow { top: 251px; }
   .sources > span { gap: 4px; padding-inline: 5px; font-size: 10px; }
   .joinLines { width: 17px; }
   .dataHub { padding-inline: 5px; }
@@ -127,10 +124,11 @@
   .stage:not(:last-child)::after { position: absolute; z-index: 0; top: 49px; left: 21px; right: auto; bottom: -27px; height: auto; width: 2px; background: var(--line); content: ""; }
   .stage[data-complete="true"]::after { background: #8bafed; }
   .stageHeading { position: static; grid-column: 1; }
+  .stageHeading button { flex-direction: row; gap: 12px; text-align: left; }
   .number { position: absolute; top: 4px; left: 0; width: 44px; height: 44px; }
   .stageHeading strong { font-size: 22px; }
   .description { grid-column: 1; min-height: 0; margin: 12px 0; }
-  .scene { grid-column: 2; grid-row: 1 / 4; align-self: center; }
+  .sceneWrap { position: static; grid-column: 2; grid-row: 1 / 4; align-self: center; }
   .tasks { grid-column: 1; margin-top: 5px; gap: 7px; }
   .nextArrow { top: auto; bottom: -23px; left: 9px; right: auto; transform: rotate(90deg); }
   .teamRail { margin-inline: 26px; }
@@ -150,7 +148,8 @@
   .stageHeading strong { font-size: 21px; }
   .number { width: 39px; height: 39px; font-size: 15px; }
   .stage:not(:last-child)::after { left: 19px; }
-  .scene { grid-column: 1; grid-row: auto; margin: 4px 0 13px; height: 151px; }
+  .sceneWrap { grid-column: 1; grid-row: auto; margin: 4px 0 13px; }
+  .scene { height: 151px; }
   .description { font-size: 14px; }
   .tasks { margin-top: 0; }
   .nextArrow { left: 6px; }

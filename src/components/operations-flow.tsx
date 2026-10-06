@@ -110,9 +110,11 @@ export default function OperationsFlow({ locale }: { locale: Locale }) {
             <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><span><small>{stage.label}</small><strong>{stage.title}</strong></span>
           </button></h3>
           <p className={styles.description}>{stage.note}</p>
-          <div className={styles.scene} aria-hidden="true"><StageScene index={index} locale={locale} /></div>
+          <div className={styles.sceneWrap} aria-hidden="true">
+            <div className={styles.scene}><StageScene index={index} locale={locale} /></div>
+            {index < 3 && <span className={styles.nextArrow}><ArrowRight size={18} /></span>}
+          </div>
           <ul className={styles.tasks}>{stage.tasks.map(task => <li key={task}><Check size={14} aria-hidden="true" /><span>{task}</span></li>)}</ul>
-          {index < 3 && <span className={styles.nextArrow} aria-hidden="true"><ArrowRight size={18} /></span>}
         </li>
       ))}</ol>
       <div className={styles.teamRail}>
