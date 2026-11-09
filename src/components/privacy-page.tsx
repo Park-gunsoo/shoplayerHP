@@ -12,10 +12,13 @@ export default function PrivacyPage({ locale }: { locale: Locale }) {
     <header className={styles.header}><Link className={styles.brand} href={localePath[locale]}><Layers3 size={28} aria-hidden="true" />ShopLayer</Link><Link className={styles.back} href={`${localePath[locale]}#closing`}><ArrowLeft size={15} aria-hidden="true" />{t.back}</Link></header>
     <article>
       <p className={styles.eyebrow}>PRIVACY POLICY</p><h1>{t.title}</h1><p className={styles.intro}>{t.intro}</p>
-      <div className={styles.notice}><ShieldCheck size={19} aria-hidden="true" /><p>{t.draft}</p></div>
+      <div className={styles.notice}><ShieldCheck size={19} aria-hidden="true" /><p>{t.updated}</p></div>
       <div className={styles.sections}>{t.sections.map(([title, body], index) => <section key={title}><h2><span>{String(index + 1).padStart(2, "0")}</span>{title}</h2><p>{body}</p></section>)}</div>
-      <div className={styles.contact}><strong>{t.contact}</strong>{publicContactEmail ? <a href={"mailto:" + publicContactEmail}>{publicContactEmail}</a> : <span>{t.pending}</span>}</div>
+      <div className={styles.contact}><strong>{t.contact}</strong><a href={"mailto:" + publicContactEmail}>{publicContactEmail}</a></div>
       <div className={styles.references}>
+        <a href="https://resend.com/security/gdpr" target="_blank" rel="noopener noreferrer">Resend · {locale === "ko" ? "데이터 처리·보관" : locale === "ja" ? "データの処理・保存" : "Data processing and retention"}</a>
+        <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel · {locale === "ko" ? "개인정보 정책" : locale === "ja" ? "プライバシーポリシー" : "Privacy policy"}</a>
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google · {locale === "ko" ? "개인정보 정책" : locale === "ja" ? "プライバシーポリシー" : "Privacy policy"}</a>
         <a href="https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS217&mCode=I030010000&nttId=12018" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Korean privacy policy guidance" : locale === "ko" ? "개인정보보호위원회 작성지침" : "韓国・個人情報保護委員会の作成指針"}</a>
         <a href="https://www.ppc.go.jp/personalinfo/legal/guidelines_tsusoku/" target="_blank" rel="noopener noreferrer">{locale === "en" ? "Japan Personal Information Protection Commission guidance" : locale === "ko" ? "일본 개인정보보호위원회 안내" : "日本・個人情報保護委員会のガイドライン"}</a>
         <a href={locale === "ja" ? "https://www.ppc.go.jp/personalinfo/pipldial/" : "https://privacy.kisa.or.kr/"} target="_blank" rel="noopener noreferrer">{locale === "en" ? "Privacy assistance in Korea" : locale === "ko" ? "개인정보 침해 상담" : "個人情報に関する相談窓口"}</a>

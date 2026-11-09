@@ -479,7 +479,7 @@ main { display: block; }
 .footer-minimal { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; }
 .footer-legal { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .footer-copyright { margin: 0; color: #91a5cc; font-size: 12px; line-height: 1.5; }
-.footer-privacy { display: inline-flex; align-items: center; min-height: 44px; color: #d4dff6; font-size: 13px; text-decoration: underline; text-underline-offset: 5px; white-space: nowrap; }
+.footer-privacy { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 5px; white-space: nowrap; }
 .footer-main { display: grid; grid-template-columns: 1.2fr .65fr .8fr; gap: 50px; padding-bottom: 66px; border-bottom: 1px solid #2b4078; }
 .footer-brand .brand { color: #fff; }
 .footer-brand p { max-width: 370px; margin: 19px 0 0; font-size: 14px; line-height: 1.8; word-break: keep-all; }

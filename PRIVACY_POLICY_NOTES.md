@@ -1,5 +1,13 @@
 # 개인정보 처리방침 작성 기록
 
+## 2026-11-09 직접 발송·동의 전환
+
+- 사용자가 Resend 연결을 선택하고 Vercel 약관 동의를 직접 완료했다. Free 리소스 `shoplayer-applications`를 `shoplayerhp` 운영 환경에 연결했다. 발신 도메인은 `notify.shoplayer.kr`, 전송 리전은 일본이며 사용자가 DNS를 직접 입력한다.
+- 처리방침은 일반 문의용 기본 내용으로 정리했다. 수집 항목·목적·완료 시 삭제·동의 거부·권리 행사·위탁 업체·국외 처리·보안·변경 안내를 한·일·영에 제공한다. 공개 표기는 기존 서비스명 ShopLayer(샵레이어)를 사용하며 별도 법인명·사업자번호·개인 담당자명은 만들어 넣지 않았다.
+- 필수 동의는 사전 선택하지 않는다. 동의 여부·방침 버전은 신청 메일에, 실제 발송 시각은 발송 기록에 남긴다. 자체 신청 DB 저장은 없으나 서버 전송·Resend 및 Gmail 보관은 발생한다.
+- Resend는 전송 리전과 저장 국가가 다르다. 공식 문서상 데이터 저장은 미국이며 Free 메일·로그 보유는 30일이다. 이를 문서에 밝혔고 업체의 보안·운영 기록까지 상담 종료 즉시 삭제된다고 주장하지 않는다.
+- 근거: 개인정보 보호법 제15조, Resend https://resend.com/security/gdpr , https://resend.com/legal/privacy-policy , Vercel https://vercel.com/legal/privacy-notice , Google https://policies.google.com/privacy . 이 기본 안내를 별도의 법률 검토·인증으로 표현하지 않는다.
+
 ## 2026-11-09 갱신
 
 - 사용자가 공개 수신 주소 `gundoll2.sj@gmail.com`을 지정했다. 한국어·일본어 초안의 미설정 안내를 실제 mailto·Gmail 수신·Vercel 호스팅 사실에 맞추고 영어 초안을 추가했다.
