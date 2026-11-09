@@ -12,6 +12,7 @@ const copy = {
   en: {
     title: "Apply for ShopLayer", description: "Tell us about your store and the support you need.",
     name: "Your name", email: "Reply email", store: "Store or brand name", url: "Store URL", note: "What do you need help with?",
+    urlHint: "Enter an address ending in co.kr. www and http are optional.",
     notePlaceholder: "Store diagnostics, product optimization, image information or multi-channel feeds…",
     submit: "Apply for ShopLayer", prepare: "Copy application", copied: "Application copied. It has not been submitted automatically.",
     copyFailed: "The application could not be copied. Please keep a separate copy of your details.",
@@ -27,6 +28,7 @@ const copy = {
     email: "연락받을 이메일",
     store: "쇼핑몰 또는 브랜드명",
     url: "쇼핑몰 URL",
+    urlHint: "co.kr로 끝나는 주소를 입력해 주세요. www나 http는 없어도 됩니다.",
     note: "현재 필요한 작업",
     notePlaceholder: "쇼핑몰 진단, 상품 최적화, 이미지 정보, 멀티 채널 피드 중 필요한 내용을 적어 주세요.",
     submit: "ShopLayer 신청하기",
@@ -45,6 +47,7 @@ const copy = {
     email: "返信先メールアドレス",
     store: "ECサイト・ブランド名",
     url: "ECサイトURL",
+    urlHint: "co.krで終わるアドレスを入力してください。wwwやhttpは不要です。",
     note: "ご希望の内容",
     notePlaceholder: "サイト診断、商品最適化、画像情報、複数チャネルのフィードなど、ご希望の内容をご記入ください。",
     submit: "ShopLayerに申し込む",
@@ -99,7 +102,7 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
         <label><span>{t.name}</span><input name="name" autoComplete="name" required /></label>
         <label><span>{t.email}</span><input name="email" type="email" autoComplete="email" required /></label>
         <label><span>{t.store}</span><input name="store" required /></label>
-        <label><span>{t.url}</span><input name="url" type="url" inputMode="url" placeholder="https://" /></label>
+        <label><span>{t.url}</span><input name="url" type="text" inputMode="url" pattern=".*[cC][oO]\.[kK][rR]" placeholder="shoplayer.co.kr" title={t.urlHint} /></label>
         <label className={styles.full}><span>{t.note}</span><textarea name="note" rows={3} placeholder={t.notePlaceholder} /></label>
       </div>
       <button type="submit" className={styles.submit}>{t.submit}<ArrowUpRight size={18} aria-hidden="true" /></button>
