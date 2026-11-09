@@ -3,12 +3,23 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import type { Locale } from "@/content/site-content";
+import { privacyPath } from "@/lib/locales";
 
 import styles from "./application-form.module.css";
 
-type Locale = "ko" | "ja";
-
 const copy = {
+  en: {
+    title: "Apply for ShopLayer", description: "Tell us about your store and the support you need.",
+    name: "Your name", email: "Reply email", store: "Store or brand name", url: "Store URL", note: "What do you need help with?",
+    notePlaceholder: "Store diagnostics, product optimization, image information or multi-channel feeds…",
+    submit: "Apply for ShopLayer", prepare: "Copy application", copied: "Application copied. It has not been submitted automatically.",
+    copyFailed: "The application could not be copied. Please keep a separate copy of your details.",
+    mailOpened: "Review the details in your email app and press Send. If it did not open, copy your application and email the address below.",
+    copy: "Copy application details", copiedReady: "Application copied. Paste it into an email and send it to the address below.",
+    mailHint: "This opens your email app. Review the details and press Send to submit your application.",
+    privacyNote: "Please provide only the information needed for your inquiry.", privacy: "Privacy policy",
+  },
   ko: {
     title: "ShopLayer 도입 신청",
     description: "쇼핑몰 정보와 필요한 작업을 입력해 도입 신청 내용을 준비해 주세요.",
@@ -22,7 +33,10 @@ const copy = {
     prepare: "신청 내용 복사",
     copied: "신청 내용이 복사되었습니다. 수신 이메일 연결 전에는 자동 접수되지 않습니다.",
     copyFailed: "현재 자동 접수가 연결되지 않았습니다. 입력 내용을 따로 보관해 주세요.",
-    mailOpened: "메일 앱에서 내용을 확인한 뒤 전송해 주세요.",
+    mailOpened: "메일 앱에서 내용을 확인한 뒤 보내기를 눌러 주세요. 앱이 열리지 않으면 신청 내용을 복사해 아래 주소로 보내 주세요.",
+    copy: "신청 내용 복사", copiedReady: "신청 내용이 복사되었습니다. 메일에 붙여넣고 아래 주소로 보내 주세요.",
+    mailHint: "버튼을 누르면 메일 앱이 열립니다. 내용을 확인하고 보내기를 눌러야 신청이 전달됩니다.",
+    privacyNote: "도입 상담에 필요한 정보만 입력해 주세요.", privacy: "개인정보 처리방침",
   },
   ja: {
     title: "ShopLayer導入のお申し込み",
@@ -37,7 +51,10 @@ const copy = {
     prepare: "申込内容をコピー",
     copied: "申込内容をコピーしました。受信先メールの設定前は自動送信されません。",
     copyFailed: "現在、自動受付は接続されていません。入力内容を別途保存してください。",
-    mailOpened: "メールアプリで内容を確認して送信してください。",
+    mailOpened: "メールアプリで内容を確認し、送信してください。開かない場合は内容をコピーし、下記のアドレスへお送りください。",
+    copy: "申込内容をコピー", copiedReady: "申込内容をコピーしました。メールに貼り付け、下記のアドレスへ送信してください。",
+    mailHint: "ボタンを押すとメールアプリが開きます。内容を確認し、送信すると申し込みが届きます。",
+    privacyNote: "導入相談に必要な情報をご入力ください。", privacy: "プライバシーポリシー",
   },
 } as const;
 
@@ -59,8 +76,9 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
     ];
     const body = lines.join("\n");
 
-    if (recipient) {
-      const subject = locale === "ko" ? "ShopLayer 도입 신청" : "ShopLayer導入のお申し込み";
+    const copyOnly = (event.nativeEvent as SubmitEvent).submitter?.getAttribute("name") === "copy";
+    if (recipient && !copyOnly) {
+      const subject = t.title;
       window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       setStatus(t.mailOpened);
       return;
@@ -68,7 +86,7 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
 
     try {
       await navigator.clipboard.writeText(body);
-      setStatus(t.copied);
+      setStatus(recipient ? t.copiedReady : t.copied);
     } catch {
       setStatus(t.copyFailed);
     }
@@ -84,8 +102,9 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
         <label><span>{t.url}</span><input name="url" type="url" inputMode="url" placeholder="https://" /></label>
         <label className={styles.full}><span>{t.note}</span><textarea name="note" rows={3} placeholder={t.notePlaceholder} /></label>
       </div>
-      <button type="submit" className={styles.submit}>{recipient ? t.submit : t.prepare}<ArrowUpRight size={18} aria-hidden="true" /></button>
-      <p className={styles.privacy}>{locale === "ko" ? "도입 상담에 필요한 정보만 입력해 주세요." : "導入相談に必要な情報をご入力ください。"} <Link href={locale === "ko" ? "/privacy" : "/ja/privacy"}>{locale === "ko" ? "개인정보 처리방침" : "プライバシーポリシー"}</Link></p>
+      <button type="submit" className={styles.submit}>{t.submit}<ArrowUpRight size={18} aria-hidden="true" /></button>
+      {recipient ? <div className={styles.mailHelp}><p>{t.mailHint}</p><div><a href={`mailto:${recipient}`}>{recipient}</a><button type="submit" name="copy">{t.copy}</button></div></div> : null}
+      <p className={styles.privacy}>{t.privacyNote} <Link href={privacyPath[locale]}>{t.privacy}</Link></p>
       {status ? <p className={styles.status} role="status">{status}</p> : null}
     </form>
   );

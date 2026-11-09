@@ -1,15 +1,30 @@
 export const privacyContent = {
+  en: {
+    title: "ShopLayer Privacy Policy", intro: "Information about the data we handle, its purposes, retention and your rights.",
+    draft: "Draft: the operator’s legal name and details of service providers and international transfers still need to be confirmed.",
+    back: "Back to ShopLayer", contact: "Privacy inquiries", pending: "To be confirmed",
+    sections: [
+      ["Scope and current handling", "This policy covers the ShopLayer website and service inquiries. Form entries are not stored on the site’s server or in a database. Inquiries are received only when you send the prepared message from your email app. Copied information may remain in your device’s clipboard according to its settings."],
+      ["Information and purposes", "The form asks for your name, email address and store or brand name. Store URL and inquiry details are optional. Information received is used to confirm service scope, respond to inquiries, discuss onboarding and follow up. It is not used for advertising messages or AI model training without separate consent."],
+      ["Retention and deletion", "The website does not retain form entries on its server. The operations team retains received inquiries only as needed to complete the consultation and response, then deletes them without undue delay. If another law requires retention, the relevant information, basis and period will be explained separately and the information kept separately."],
+      ["Third parties, service providers and international transfers", "The website has no server integration that automatically forwards form entries. Messages you send are received at gundoll2.sj@gmail.com through Gmail, and the website is hosted on Vercel. The details of service providers, processing locations, retention and any required international-transfer procedures remain to be confirmed in this draft. Your own email provider’s handling is governed by its policy."],
+      ["Your rights and requests", "Subject to applicable law, you may request access, correction, deletion, restriction of processing or withdrawal of consent. Contact ShopLayer’s privacy address. After verifying your identity, the team will follow the applicable procedures and explain any restrictions. You may choose not to provide information, but an individual response may not be possible without contact details."],
+      ["Security and automatic collection", "Access to received personal information is limited to the staff who need it, with access, storage and deletion procedures managed accordingly. The current site source has no separately integrated advertising tracking or analytics cookie tools. If logs, analytics or cookies are added, the information collected, purposes, retention and opt-out methods will be updated."],
+      ["Privacy contact and assistance", "The service is called ShopLayer, and the ShopLayer operations team handles privacy inquiries at gundoll2.sj@gmail.com. The operator’s legal name still needs to be confirmed. Official privacy authorities can also provide guidance about privacy complaints and dispute resolution."],
+      ["Changes to this policy", "This draft reflects the website’s handling as of November 9, 2026. Material changes to purposes, data, retention, service providers or international transfers will be announced on this page before taking effect, with separate notice or consent where required by law."],
+    ],
+  },
   "ko": {
     "title": "ShopLayer 개인정보 처리방침",
     "intro": "개인정보의 처리 항목과 목적, 보유 기간, 이용자의 권리를 안내합니다.",
-    "draft": "공개 문의 접수 전 운영 사업자명과 실제 개인정보 문의처를 확정해야 합니다.",
+    "draft": "초안: 운영 사업자의 법적 명칭과 실제 위탁·국외 이전 현황은 추가 확정이 필요합니다.",
     "back": "ShopLayer로 돌아가기",
     "contact": "개인정보 문의처",
     "pending": "공개 전 확정",
     "sections": [
       [
         "적용 범위와 현재 처리 방식",
-        "이 방침은 ShopLayer 소개 홈페이지와 도입 문의에 적용됩니다. 현재 폼 입력값은 사이트 서버나 데이터베이스에 저장하지 않습니다. 수신처가 연결되면 이용자가 메일 앱에서 직접 전송한 내용만 문의 이메일로 접수됩니다. 복사한 내용은 이용자 단말기의 클립보드 설정에 따라 남을 수 있습니다."
+        "이 방침은 ShopLayer 소개 홈페이지와 도입 문의에 적용됩니다. 현재 폼 입력값은 사이트 서버나 데이터베이스에 저장하지 않습니다. 이용자가 메일 앱에서 직접 전송한 내용만 문의 이메일로 접수됩니다. 복사한 내용은 이용자 단말기의 클립보드 설정에 따라 남을 수 있습니다."
       ],
       [
         "처리 항목과 목적",
@@ -21,7 +36,7 @@ export const privacyContent = {
       ],
       [
         "제3자 제공·위탁·국외 이전",
-        "현재 홈페이지에는 문의 정보를 제3자에게 전달하는 서버 연동이 없습니다. 향후 이메일 수신, 호스팅, 상담 저장 등 외부 서비스를 도입하면 실제 수탁자·업무·보유 기간과 국외 이전에 필요한 정보를 공개하고 필요한 절차를 거칩니다. 이용자가 사용하는 메일 서비스의 처리에는 해당 서비스의 정책이 적용됩니다."
+        "현재 홈페이지에는 폼 입력값을 자동 전달하는 서버 연동이 없습니다. 이용자가 보낸 문의는 Gmail의 gundoll2.sj@gmail.com으로 수신하며, 홈페이지는 Vercel에서 호스팅합니다. 실제 위탁 관계·처리 국가·보유 기간과 국외 이전에 필요한 정보 및 절차는 이 초안에서 추가 확정이 필요합니다. 이용자가 사용하는 메일 서비스의 처리에는 해당 서비스의 정책이 적용됩니다."
       ],
       [
         "이용자의 권리와 행사 방법",
@@ -33,25 +48,25 @@ export const privacyContent = {
       ],
       [
         "개인정보 보호 문의와 구제",
-        "서비스 명칭은 ShopLayer이며, 개인정보 업무는 ShopLayer 운영팀이 담당합니다. 운영 사업자의 법적 명칭과 실제 개인정보 문의 연락처는 공개 문의 접수 전에 확정·게시해야 합니다. 권익 침해 상담은 개인정보침해신고센터와 개인정보분쟁조정위원회의 공식 안내를 이용할 수 있습니다."
+        "서비스 명칭은 ShopLayer이며, 개인정보 업무는 ShopLayer 운영팀이 담당합니다. 개인정보 문의는 gundoll2.sj@gmail.com으로 보내 주세요. 운영 사업자의 법적 명칭은 추가 확정이 필요합니다. 권익 침해 상담은 개인정보침해신고센터와 개인정보분쟁조정위원회의 공식 안내를 이용할 수 있습니다."
       ],
       [
         "방침의 변경",
-        "이 문서는 2026년 10월 1일 현재 홈페이지의 처리 방식에 맞춘 초안입니다. 수집 목적·항목·보유 기간·위탁·국외 이전 등 중요한 처리 사항이 변경되면 시행 전에 이 페이지에 변경 내용을 알리고, 법령상 필요한 경우 별도로 안내하거나 동의를 받습니다."
+        "이 문서는 2026년 11월 9일 현재 홈페이지의 처리 방식에 맞춘 초안입니다. 수집 목적·항목·보유 기간·위탁·국외 이전 등 중요한 처리 사항이 변경되면 시행 전에 이 페이지에 변경 내용을 알리고, 법령상 필요한 경우 별도로 안내하거나 동의를 받습니다."
       ]
     ]
   },
   "ja": {
     "title": "ShopLayer プライバシーポリシー",
     "intro": "取り扱う情報と目的、保存期間、利用者の権利をご案内します。",
-    "draft": "公開の問い合わせ受付前に、運営事業者名と実際の連絡先を確定する必要があります。",
+    "draft": "草案：運営事業者の法的名称、実際の委託・国外移転の詳細は追加確認が必要です。",
     "back": "ShopLayerに戻る",
     "contact": "個人情報のお問い合わせ",
     "pending": "公開前に確定",
     "sections": [
       [
         "適用範囲と現在の取り扱い",
-        "本方針はShopLayerの紹介サイトと導入のお問い合わせに適用します。現在、フォームの入力内容はサイトのサーバーやデータベースに保存しません。受信先が設定されると、利用者がメールアプリから送信した内容だけを受け付けます。コピーした内容は端末のクリップボード設定に応じて残る場合があります。"
+        "本方針はShopLayerの紹介サイトと導入のお問い合わせに適用します。現在、フォームの入力内容はサイトのサーバーやデータベースに保存しません。利用者がメールアプリから送信した内容だけを受け付けます。コピーした内容は端末のクリップボード設定に応じて残る場合があります。"
       ],
       [
         "項目と利用目的",
@@ -63,7 +78,7 @@ export const privacyContent = {
       ],
       [
         "第三者提供・委託・国外移転",
-        "現在、問い合わせ情報を第三者へ送信するサーバー連携はありません。メール受信、ホスティング、相談情報の保存等を導入する場合は、実際の委託先・業務・保存期間と国外移転に必要な情報を公開し、必要な手続きを行います。利用者自身のメールサービスの取り扱いには、そのサービスの方針が適用されます。"
+        "現在、フォームの入力内容を自動送信するサーバー連携はありません。送信されたお問い合わせはGmailのgundoll2.sj@gmail.comで受信し、サイトはVercelでホスティングしています。実際の委託関係・処理国・保存期間と国外移転に必要な情報や手続きは、この草案で追加確認が必要です。利用者自身のメールサービスの取り扱いには、そのサービスの方針が適用されます。"
       ],
       [
         "本人の権利と手続き",
@@ -75,11 +90,11 @@ export const privacyContent = {
       ],
       [
         "お問い合わせと相談窓口",
-        "サービス名称はShopLayerで、個人情報の業務はShopLayer運用チームが担当します。事業者の法的名称と実際の連絡先は、公開の問い合わせ受付前に確定・掲載する必要があります。制度に関する相談は日本の個人情報保護委員会等の公式案内をご確認ください。"
+        "サービス名称はShopLayerで、個人情報の業務はShopLayer運用チームが担当します。お問い合わせはgundoll2.sj@gmail.comへお送りください。事業者の法的名称は追加確認が必要です。制度に関する相談は日本の個人情報保護委員会等の公式案内をご確認ください。"
       ],
       [
         "方針の変更",
-        "本書は2026年10月1日時点のサイトの処理方法に合わせた草案です。目的・項目・期間・委託・国外移転等に重要な変更がある場合は、施行前に本ページで知らせ、法令上必要な場合は個別の案内または同意を行います。"
+        "本書は2026年11月9日時点のサイトの処理方法に合わせた草案です。目的・項目・期間・委託・国外移転等に重要な変更がある場合は、施行前に本ページで知らせ、法令上必要な場合は個別の案内または同意を行います。"
       ]
     ]
   }

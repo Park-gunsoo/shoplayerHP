@@ -14,12 +14,26 @@ import { DEMO_HOLD_MS, demoDuration } from "./demo-timing";
 import styles from "./context-shopping-demo.module.css";
 
 const products = [
-  { id: "cream", name: { ko: "크림 와이드 팬츠", ja: "クリーム ワイドパンツ" }, image: "/images/demo-trousers-cream.png", price: "₩47,900", rating: "4.9" },
-  { id: "sand", name: { ko: "샌드 스트레이트 팬츠", ja: "サンド ストレートパンツ" }, image: "/images/demo-trousers-sand.png", price: "₩49,500", rating: "4.8" },
-  { id: "oatmeal", name: { ko: "오트밀 밴딩 팬츠", ja: "オートミール イージーパンツ" }, image: "/images/demo-trousers-oatmeal.png", price: "₩39,800", rating: "4.7" },
+  { id: "cream", name: { en: "Cream wide-leg trousers", ko: "크림 와이드 팬츠", ja: "クリーム ワイドパンツ" }, image: "/images/demo-trousers-cream.png", price: "₩47,900", rating: "4.9" },
+  { id: "sand", name: { en: "Sand straight-leg trousers", ko: "샌드 스트레이트 팬츠", ja: "サンド ストレートパンツ" }, image: "/images/demo-trousers-sand.png", price: "₩49,500", rating: "4.8" },
+  { id: "oatmeal", name: { en: "Oatmeal easy trousers", ko: "오트밀 밴딩 팬츠", ja: "オートミール イージーパンツ" }, image: "/images/demo-trousers-oatmeal.png", price: "₩39,800", rating: "4.7" },
 ] as const;
 
 const copy = {
+  en: {
+    badge: "AI recommendation demo", replay: "Replay from data collection",
+    sources: [["Descriptions", "Fit · Color · Features"], ["Prices", "Price · Availability"], ["Images", "Shape · Details"], ["Reviews", "Ratings · Experience"]],
+    stages: ["Collect", "Compare", "Recommend"],
+    messages: ["Gathering product information.", "Comparing products with your needs.", "Products selected for your shopping context."],
+    context: "Shopping context", result: "Products for you", matched: "Recommended products",
+    previous: "Previous product", next: "Next product", select: "Choose a product",
+    carousel: "Product recommendation demo. Prices and ratings are illustrative.",
+    scenarios: [
+      { name: "Work", criteria: ["Summer commute", "Under ₩50,000", "Neat fit"], order: [1, 0, 2], reasons: ["Relaxed workwear", "Neat straight-leg fit", "Comfortable elastic waist"] },
+      { name: "Weekend", criteria: ["Weekend walks", "Comfort", "Relaxed fit"], order: [2, 0, 1], reasons: ["A relaxed silhouette", "Easy everyday styling", "Comfortable weekend style"] },
+      { name: "Travel", criteria: ["Travel", "Easy movement", "Elastic waist"], order: [2, 1, 0], reasons: ["Relaxed travel style", "A versatile fit", "Comfort while traveling"] },
+    ],
+  },
   ko: {
     badge: "AI 추천 시연", replay: "정보 수집부터 다시 보기",
     sources: [
@@ -166,7 +180,7 @@ export default function ContextShoppingDemo({ locale, label, description }: { lo
       </div>
       <p className={styles.description}>{description}</p>
 
-      <div className={styles.gathering} aria-label={locale === "ko" ? "상품 설명·가격·이미지·리뷰를 모아 분석하는 ShopLayer AI" : "商品説明・価格・画像・レビューを集めて分析するShopLayer AI"}>
+      <div className={styles.gathering} aria-label={locale === "en" ? "ShopLayer AI gathers and analyzes descriptions, prices, images and reviews" : locale === "ko" ? "상품 설명·가격·이미지·리뷰를 모아 분석하는 ShopLayer AI" : "商品説明・価格・画像・レビューを集めて分析するShopLayer AI"}>
         <svg className={styles.streams} viewBox="0 0 600 180" preserveAspectRatio="none" aria-hidden="true">
           <path d="M150 40 C210 40 235 90 300 90" /><path d="M450 40 C390 40 365 90 300 90" />
           <path d="M150 140 C210 140 235 90 300 90" /><path d="M450 140 C390 140 365 90 300 90" />
@@ -186,14 +200,14 @@ export default function ContextShoppingDemo({ locale, label, description }: { lo
         <div className={styles.criteria}>{chosen.criteria.map((criterion) => <span key={criterion}><Check size={11} aria-hidden="true" />{criterion}</span>)}</div>
       </div>
 
-      <div className={styles.results} role="region" aria-roledescription={locale === "ko" ? "캐러셀" : "カルーセル"} aria-label={t.carousel} aria-busy={phase !== 2}>
+      <div className={styles.results} role="region" aria-roledescription={locale === "en" ? "carousel" : locale === "ko" ? "캐러셀" : "カルーセル"} aria-label={t.carousel} aria-busy={phase !== 2}>
         <div className={styles.resultsHead}><strong><Sparkles size={15} aria-hidden="true" />{t.result}</strong><div className={styles.arrows}><button type="button" onClick={() => goTo(active - 1)} disabled={active === 0} aria-label={t.previous}><ArrowLeft size={17} aria-hidden="true" /></button><button type="button" onClick={() => goTo(active + 1)} disabled={active === products.length - 1} aria-label={t.next}><ArrowRight size={17} aria-hidden="true" /></button></div></div>
         <ol className={styles.track} ref={trackRef} onScroll={syncActive} onFocusCapture={loop.pause} onKeyDown={handleKey} tabIndex={0} aria-label={t.matched}>
           {recommended.map((product, index) => (
             <li className={styles.slide} key={product.id}>
               <article className={styles.product}>
                 <div className={styles.productImage}><Image src={product.image} alt={product.name[locale]} fill sizes="(max-width: 680px) 60vw, (max-width: 900px) 35vw, 240px" /><span className={styles.rank}>{String(index + 1).padStart(2, "0")}</span></div>
-                <div className={styles.productBody}><span className={styles.mall}><Store size={12} aria-hidden="true" />ShopLayer</span><h3>{product.name[locale]}</h3><div className={styles.priceRow}><strong>{product.price}</strong><span className={styles.rating} aria-label={(locale === "ko" ? "5점 만점에 " : "5点満点中 ") + product.rating}><Star size={13} fill="currentColor" aria-hidden="true" />{product.rating}</span></div><p className={styles.reason}><Check size={12} aria-hidden="true" />{product.reason}</p></div>
+                <div className={styles.productBody}><span className={styles.mall}><Store size={12} aria-hidden="true" />ShopLayer</span><h3>{product.name[locale]}</h3><div className={styles.priceRow}><strong>{product.price}</strong><span className={styles.rating} aria-label={(locale === "en" ? "Rating out of 5: " : locale === "ko" ? "5점 만점에 " : "5点満点中 ") + product.rating}><Star size={13} fill="currentColor" aria-hidden="true" />{product.rating}</span></div><p className={styles.reason}><Check size={12} aria-hidden="true" />{product.reason}</p></div>
               </article>
             </li>
           ))}

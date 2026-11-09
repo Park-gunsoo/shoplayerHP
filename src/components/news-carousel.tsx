@@ -92,14 +92,14 @@ export default function NewsCarousel({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div className={styles.carousel} ref={panelRef} role="region" aria-roledescription={ja ? "カルーセル" : "슬라이드"} aria-label={ja ? "韓国・日本・米国の報道事例6件" : "국내·일본·미국 보도 사례 6건"}>
+    <div className={styles.carousel} ref={panelRef} role="region" aria-roledescription={locale === "en" ? "carousel" : ja ? "カルーセル" : "슬라이드"} aria-label={locale === "en" ? "Six reported examples from Korea, Japan and the US" : ja ? "韓国・日本・米国の報道事例6件" : "국내·일본·미국 보도 사례 6건"}>
       <div className={styles.toolbar}>
         <div className={styles.counter} aria-live="polite"><strong>{String(active + 1).padStart(2, "0")}</strong><span>/ {String(items.length).padStart(2, "0")}</span></div>
-        <div className={styles.toolbarNote}>{ja ? "左右にスワイプして事例を見る" : "좌우로 넘겨 사례 보기"}</div>
+        <div className={styles.toolbarNote}>{locale === "en" ? "Swipe to explore examples" : ja ? "左右にスワイプして事例を見る" : "좌우로 넘겨 사례 보기"}</div>
         <div className={styles.arrows}>
           <DemoMotionButton locale={locale} paused={loop.paused} onToggle={loop.togglePause} />
-          <button type="button" onClick={() => goTo(active - 1)} disabled={active === 0} aria-label={ja ? "前の事例" : "이전 사례"}><ArrowLeft size={19} /></button>
-          <button type="button" onClick={() => goTo(active + 1)} disabled={active === items.length - 1} aria-label={ja ? "次の事例" : "다음 사례"}><ArrowRight size={19} /></button>
+          <button type="button" onClick={() => goTo(active - 1)} disabled={active === 0} aria-label={locale === "en" ? "Previous example" : ja ? "前の事例" : "이전 사례"}><ArrowLeft size={19} /></button>
+          <button type="button" onClick={() => goTo(active + 1)} disabled={active === items.length - 1} aria-label={locale === "en" ? "Next example" : ja ? "次の事例" : "다음 사례"}><ArrowRight size={19} /></button>
         </div>
       </div>
 
@@ -115,23 +115,23 @@ export default function NewsCarousel({ locale }: { locale: Locale }) {
               <article className={styles.card} aria-label={`${index + 1}. ${item.brand}`}>
                 <div className={styles.story}>
                   <div className={styles.meta}><span className={styles.country}>{item.countryLabel}</span><span>{item.media} · {item.date}</span></div>
-                  {logo ? <div className={styles.logo}><Image src={logo.src} alt={ja ? `${item.brand}のロゴ` : `${item.brand} 로고`} width={logo.width} height={logo.height} unoptimized /></div> : null}
+                  {logo ? <div className={styles.logo}><Image src={logo.src} alt={locale === "en" ? `${item.brand} logo` : ja ? `${item.brand}のロゴ` : `${item.brand} 로고`} width={logo.width} height={logo.height} unoptimized /></div> : null}
                   <h3>{item.brand}</h3>
                   <p className={styles.summary}>{item.summary}</p>
-                  <p className={styles.comparison}><strong>{ja ? "比較基準" : "비교 기준"}</strong>{item.comparison}</p>
+                  <p className={styles.comparison}><strong>{locale === "en" ? "Comparison" : ja ? "比較基準" : "비교 기준"}</strong>{item.comparison}</p>
                   <p className={styles.caveat}>{item.caveat}</p>
-                  <a className={styles.source} href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{ja ? "元記事を見る" : "기사 원문 보기"}<ArrowUpRight size={17} aria-hidden="true" /></a>
+                  <a className={styles.source} href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{locale === "en" ? "Read the article" : ja ? "元記事を見る" : "기사 원문 보기"}<ArrowUpRight size={17} aria-hidden="true" /></a>
                 </div>
 
                 <div className={styles.evidence}>
-                  <span className={styles.evidenceLabel}>{ja ? "記事で報じられた指標" : "기사에 보도된 지표"}</span>
+                  <span className={styles.evidenceLabel}>{locale === "en" ? "Metric reported in the article" : ja ? "記事で報じられた指標" : "기사에 보도된 지표"}</span>
                   <div className={styles.metric}><strong>{countMetric(item.metric.value, slideProgress)}</strong><span>{item.metric.label}</span></div>
                   <div className={styles.chart} role="img" aria-label={`${item.graph.axisLabel}: ${item.graph.baselineLabel}, ${item.graph.resultLabel}`}>
                     <div className={styles.chartRow}><span>{item.graph.baselineLabel}</span><div className={styles.trackBar}><i style={{ width: `${baselinePercent}%` }} /></div></div>
                     <div className={`${styles.chartRow} ${styles.chartRowResult}`}><span>{item.graph.resultLabel}</span><div className={styles.trackBar}><i style={{ width: `${resultPercent}%` }} /></div></div>
                   </div>
                   <p className={styles.axis}>{item.graph.axisLabel}</p>
-                  <p className={styles.notOurMetric}>{ja ? "報道記事から抜粋 · 数値は各記事に基づく" : "언론 기사 발췌 · 수치는 각 기사 기준"}</p>
+                  <p className={styles.notOurMetric}>{locale === "en" ? "Press coverage · Figures follow each article" : ja ? "報道記事から抜粋 · 数値は各記事に基づく" : "언론 기사 발췌 · 수치는 각 기사 기준"}</p>
                 </div>
               </article>
             </li>
@@ -139,14 +139,14 @@ export default function NewsCarousel({ locale }: { locale: Locale }) {
         })}
       </ol>
 
-      <div className={styles.dots} role="group" aria-label={ja ? "事例を選択" : "사례 선택"}>
+      <div className={styles.dots} role="group" aria-label={locale === "en" ? "Choose an example" : ja ? "事例を選択" : "사례 선택"}>
         {items.map((item, index) => (
           <button
             type="button"
             key={item.id}
             className={active === index ? styles.activeDot : ""}
             onClick={() => goTo(index)}
-            aria-label={ja ? `${index + 1}番目の事例: ${item.brand}` : `${index + 1}번 사례: ${item.brand}`}
+            aria-label={locale === "en" ? `Example ${index + 1}: ${item.brand}` : ja ? `${index + 1}番目の事例: ${item.brand}` : `${index + 1}번 사례: ${item.brand}`}
             aria-current={active === index ? "true" : undefined}
           />
         ))}

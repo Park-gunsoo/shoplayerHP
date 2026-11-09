@@ -11,6 +11,11 @@
 .submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 18px; border: 0; border-radius: 11px; background: #ae4e00; color: #fff; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; transition: background .2s, transform .2s; }
 .submit:hover { background: #c45e07; transform: translateY(-2px); }
 .status { margin: -6px 0 0; color: #485c7e; font-size: 12px; line-height: 1.55; }
+.mailHelp { color: #485c7e; font-size: 12px; line-height: 1.55; }
+.mailHelp p { margin: 0 0 4px; }
+.mailHelp > div { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
+.mailHelp a, .mailHelp button { display: inline-flex; align-items: center; min-height: 44px; color: #284e91; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.mailHelp button { border: 0; padding: 0; background: transparent; font: inherit; cursor: pointer; }
 .privacy { margin: -4px 0 0; color: #7e8da4; font-size: 11px; line-height: 1.55; }
 .privacy a { color: #426397; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 @media (max-width: 560px) { .fields { grid-template-columns: 1fr; } .fields .full { grid-column: auto; } }

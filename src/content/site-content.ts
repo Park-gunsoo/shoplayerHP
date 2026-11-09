@@ -1,6 +1,7 @@
 import { shopLayerFaq } from "./shoplayer-faq";
+import { englishSiteContent } from "./site-content-en";
 
-export type Locale = 'ko' | 'ja';
+export type Locale = 'ko' | 'ja' | 'en';
 
 export type SectionId = 'trend' | 'platforms' | 'cases' | 'definition' | 'features' | 'feed' | 'faq' | 'closing';
 
@@ -127,6 +128,7 @@ export type SiteContent = {
 };
 
 export const siteContent: Record<Locale, SiteContent> = {
+  en: englishSiteContent,
   ko: {
     meta: {
       title: 'ShopLayer | 쇼핑몰 AI 최적화 커머스 에이전트',

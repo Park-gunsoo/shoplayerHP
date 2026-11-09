@@ -113,7 +113,7 @@ button { cursor: pointer; }
 .header-nav a:hover { color: var(--white); }
 .header-actions { display: flex; align-items: center; flex: none; gap: 14px; }
 .lang-switch { display: inline-flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid #50659a; border-radius: 999px; }
-.lang-switch a { display: grid; min-width: 38px; min-height: 34px; place-items: center; border-radius: 999px; color: #b7c7eb; font-size: 12px; font-weight: 800; }
+.lang-switch a { display: grid; min-width: 44px; min-height: 44px; place-items: center; border-radius: 999px; color: #b7c7eb; font-size: 12px; font-weight: 800; }
 .lang-switch a[aria-current="page"] { background: #fff; color: var(--navy); }
 .lang-switch a:not([aria-current]):hover { color: #fff; }
 .header-cta, .button-primary, .button-secondary {
@@ -542,7 +542,7 @@ main { display: block; }
   .header-nav::-webkit-scrollbar-thumb { background: #7898d2; border-radius: 3px; }
   .header-nav a { flex: none; }
   .header-actions { margin-left: auto; }
-  .lang-switch a { min-width: 34px; min-height: 32px; }
+  .lang-switch a { min-width: 44px; min-height: 44px; }
   .hero-inner { padding-top: 110px; padding-bottom: 47px; }
   .hero-title { font-size: clamp(42px, 11vw, 60px); }
   .hero-description { margin-top: 22px; font-size: 16px; }

@@ -23,7 +23,7 @@ export type NewsCase = {
 
 // Each pair visualizes the precise comparison reported by its linked article.
 // A numeric floor such as ">4×" is graphed at 4 and labelled as a lower bound.
-export const newsCases: Record<Locale, NewsCase[]> = {
+const originalNewsCases: Record<Exclude<Locale, "en">, NewsCase[]> = {
   ko: [
     {
       id: "cj-onstyle",
@@ -280,4 +280,59 @@ export const newsCases: Record<Locale, NewsCase[]> = {
       },
     },
   ],
+};
+
+type CaseTranslation = Pick<NewsCase, "countryLabel" | "brand" | "media" | "summary" | "metric" | "comparison" | "caveat"> & {
+  graph: Pick<NewsCase["graph"], "baselineLabel" | "resultLabel" | "axisLabel">;
+};
+
+const englishCases: Record<string, CaseTranslation> = {
+  "cj-onstyle": {
+    countryLabel: "Korea", brand: "CJ OnStyle", media: "ETNews",
+    summary: "CJ OnStyle revised product titles to reflect customer language and organized review information for AI recommendations. The article reported that traffic from ChatGPT and Gemini in June 2026 was at least four times the January level.",
+    metric: { value: "≥4×", label: "AI referral traffic" }, comparison: "June 2026 traffic vs January 2026 traffic",
+    caveat: "A before-and-after comparison without a control group cannot isolate the effect of product data improvements.",
+    graph: { baselineLabel: "January: 1", resultLabel: "June: ≥4", axisLabel: "Relative AI referral traffic · January = 1; June shown at the reported lower bound" },
+  },
+  osulloc: {
+    countryLabel: "Korea", brand: "OSULLOC Mall", media: "ChosunBiz",
+    summary: "The retailer undertook GEO consulting and system changes. The report stated that AI referral traffic rose 602% and the purchase conversion rate rose 725% in Q4 2025 compared with the same quarter a year earlier.",
+    metric: { value: "+602%", label: "AI referral traffic" }, comparison: "Q4 2025 vs Q4 2024",
+    caveat: "Original traffic volumes, conversion rates and a control group were not disclosed. The entire increase cannot be attributed to optimization alone.",
+    graph: { baselineLabel: "Q4 2024: 100", resultLabel: "Q4 2025: 702", axisLabel: "Relative AI referral traffic · Prior-year quarter = 100" },
+  },
+  honeys: {
+    countryLabel: "Japan", brand: "Honeys", media: "Netshop Watch",
+    summary: "AI generated discovery hashtags from fashion product information and user behavior. In March 2026, visitors arriving through hashtags reportedly converted at about 2.5 times the rate of other visitors.",
+    metric: { value: "≈2.5×", label: "Purchase conversion rate" }, comparison: "Hashtag visitors vs other visitors in March 2026",
+    caveat: "This compares different visitor groups in the same month. It is not a before-and-after improvement rate or proof of AI’s causal effect.",
+    graph: { baselineLabel: "Other visitors: 1", resultLabel: "Hashtag visitors: ≈2.5", axisLabel: "Relative conversion rate by visitor group · Other visitors = 1" },
+  },
+  sakazen: {
+    countryLabel: "Japan", brand: "Sakazen", media: "Mynavi TECH+",
+    summary: "AI model styling images were created from real outfit photos, with people checking that they matched the products. The reported conversion rate through staff outfit content changed from 2.8% before adoption to 5.0% afterward.",
+    metric: { value: "2.8% → 5.0%", label: "Conversion via outfit content" }, comparison: "Before vs after AI model adoption · Exact measurement periods not stated",
+    caveat: "This is an AI outfit-image example. The article did not separate the impact of other changes during the same period.",
+    graph: { baselineLabel: "Before: 2.8%", resultLabel: "After: 5.0%", axisLabel: "Purchase conversion via staff outfit content (%)" },
+  },
+  michaels: {
+    countryLabel: "United States", brand: "Michaels", media: "Digiday",
+    summary: "The craft retailer introduced an AI shopping assistant that asks about projects and budgets. The company told the publication that assistant users converted online at more than twice the rate of traditional search users.",
+    metric: { value: ">2×", label: "Purchase conversion rate" }, comparison: "AI assistant users vs traditional search users · Reported July 2026",
+    caveat: "Different user groups were compared. Absolute conversion rates and measurement periods were not disclosed.",
+    graph: { baselineLabel: "Search: 1", resultLabel: "AI assistant: >2", axisLabel: "Relative conversion rate by user group · Search = 1; AI shown at the reported lower bound" },
+  },
+  "mars-wrigley": {
+    countryLabel: "United States", brand: "Mars Wrigley", media: "Modern Retail",
+    summary: "Mars Wrigley experimented with revising US marketplace product listings for AI search. A company representative reported an average 8% increase in search visibility across six participating brands.",
+    metric: { value: "+8%", label: "Search visibility" }, comparison: "Average search visibility across six brands · Reported December 2025",
+    caveat: "The article did not disclose the measurement tool, period or original values. Search visibility is not a measure of revenue growth.",
+    graph: { baselineLabel: "Baseline: 100", resultLabel: "Reported: 108", axisLabel: "Relative search visibility · Baseline = 100; baseline period not disclosed" },
+  },
+};
+
+// Keep dates, sources and chart values identical across language versions.
+export const newsCases: Record<Locale, NewsCase[]> = {
+  ...originalNewsCases,
+  en: originalNewsCases.ko.map((item) => ({ ...item, ...englishCases[item.id], graph: { ...item.graph, ...englishCases[item.id].graph } })),
 };

@@ -11,6 +11,24 @@ import { demoCycle } from "./demo-timing";
 import styles from "./operations-flow.module.css";
 
 const words = {
+  en: {
+    title: "From connection to continuous improvement", select: "Select a step to explore",
+    stages: [
+      { title: "Connect", label: "CONNECT", note: "Connect your site and product data to establish a shared foundation.", tasks: ["Register store URL and details", "Connect the product feed"] },
+      { title: "Analyze", label: "ANALYZE", note: "AI analyzes your site and products to identify areas for improvement.", tasks: ["Review structure, SEO and brand", "Analyze products, images and attributes"] },
+      { title: "Optimize", label: "OPTIMIZE", note: "Refine site and product information using reviewed recommendations.", tasks: ["Site recommendations, reports and implementation support", "Approve product optimizations", "Generate feeds for each platform"] },
+      { title: "Operate", label: "OPERATE", note: "Monitor campaigns and data to prepare the next improvements.", tasks: ["Run feed-based campaigns", "Review the site monthly", "Check products and feeds at least daily"] },
+    ],
+    site: "Store website", feed: "Product feed", connected: "Data connected", siteCheck: "Structure and brand", productCheck: "Products and images", analyze: "Identify improvements", verified: "Team approval", fields: ["Name · Description", "Color · Material", "Images · ALT"], channel: "Channel feeds", monitoring: "Turn changes into improvements",
+    team: "Supporting every step", teamName: "ShopLayer operations team", teamNote: "Expert judgment alongside AI analysis and automation.",
+    support: [
+      { title: "Review and approve", note: "Check evidence and proposed changes." },
+      { title: "Handle exceptions", note: "Review products that need judgment." },
+      { title: "Resolve feed issues", note: "Address channel and feed errors." },
+      { title: "Customer support", note: "Help with operational questions." },
+    ],
+    loop: "What we learn in operations informs the next diagnosis and improvements.", outcomes: ["Reliable operations", "Better product data", "More channel options"],
+  },
   ko: {
     title: "연결에서 시작해, 지속적인 개선으로", select: "단계를 눌러 살펴보세요",
     stages: [

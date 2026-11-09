@@ -7,12 +7,24 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./shopping-demo.module.css";
 import { demoCycle, demoDuration } from "./demo-timing";
 
-type Locale = "ko" | "ja";
+import type { Locale } from "@/content/site-content";
 
 const LOOP_MS = demoCycle(4300);
 const INITIAL_FRAME_MS = demoDuration(4300) + 100;
 
 const demo = {
+  en: {
+    windowTitle: "AI shopping chat", badge: "Shopping AI demo", greeting: "What are you looking for?",
+    query: "Show me comfortable beige trousers for summer commuting, under ₩50,000.",
+    thinking: "Checking your needs and product information", answer: "Here are products that match your needs.",
+    hint: "Beige · Summer · Under ₩50,000", placeholder: "Tell me what you are looking for", previewLabel: "Suggested products",
+    disclaimer: "ShopLayer shopping AI screen demo", pause: "Pause animation", play: "Play animation", replay: "Replay from the start",
+    products: [
+      { name: "Cream wide-leg trousers", price: "₩47,900", detail: "Cream beige · Wide leg", image: "/images/demo-trousers-cream.png" },
+      { name: "Sand straight-leg trousers", price: "₩49,500", detail: "Sand beige · Straight leg", image: "/images/demo-trousers-sand.png" },
+      { name: "Oatmeal easy trousers", price: "₩39,800", detail: "Oatmeal · Elastic waist", image: "/images/demo-trousers-oatmeal.png" },
+    ],
+  },
   ko: {
     windowTitle: "AI 쇼핑 대화",
     badge: "쇼핑 AI 시연",

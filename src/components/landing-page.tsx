@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { localePath, privacyPath } from "@/lib/locales";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import {
@@ -62,7 +63,12 @@ function ExternalSource({ card }: { card: SourceCard }) {
 
 export default function LandingPage({ locale }: { locale: Locale }) {
   const content = siteContent[locale];
-  const journey = locale === "ko"
+  const journey = locale === "en" ? [
+        { title: "Understand your store and products", detail: "Review site structure, brand information and the facts in products and images." },
+        { title: "AI analysis, human approval", detail: "Review the evidence and approve improvements in ShopLayer." },
+        { title: "Organize product data", detail: "Manage source and approved information as a foundation for channel operations." },
+        { title: "Multi-channel operations", detail: "Generate and update feeds for six channels from one product feed." },
+      ] : locale === "ko"
     ? [
         { title: "쇼핑몰·상품 이해", detail: "사이트 구조와 브랜드, 상품·이미지의 사실을 함께 파악합니다." },
         { title: "AI 분석과 사람의 확정", detail: "근거를 검토하고 필요한 개선안을 ShopLayer 기준으로 확정합니다." },
@@ -78,14 +84,14 @@ export default function LandingPage({ locale }: { locale: Locale }) {
 
   return (
     <div className="site-shell">
-      <a className="skip-link" href="#main">{locale === "ko" ? "본문으로 이동" : "本文へ移動"}</a>
+      <a className="skip-link" href="#main">{locale === "en" ? "Skip to content" : locale === "ko" ? "본문으로 이동" : "本文へ移動"}</a>
       <header className="site-header">
         <div className="header-inner">
-          <Link className="brand" href={locale === "ko" ? "/" : "/ja"} aria-label={locale === "ko" ? "ShopLayer 첫 화면" : "ShopLayerトップページ"}>
+          <Link className="brand" href={localePath[locale]} aria-label={locale === "en" ? "ShopLayer home" : locale === "ko" ? "ShopLayer 첫 화면" : "ShopLayerトップページ"}>
             <Layers3 className="brand-icon" aria-hidden="true" />
             <span>ShopLayer</span>
           </Link>
-          <nav className="header-nav" aria-label={locale === "ko" ? "주요 메뉴" : "メインナビゲーション"}>
+          <nav className="header-nav" aria-label={locale === "en" ? "Main navigation" : locale === "ko" ? "주요 메뉴" : "メインナビゲーション"}>
             {content.nav.items.map((item) => <a href={`#${item.id}`} key={item.id}>{item.label}</a>)}
           </nav>
           <div className="header-actions">
@@ -120,14 +126,14 @@ export default function LandingPage({ locale }: { locale: Locale }) {
             <SectionHeading number="01 / 08" eyebrow={content.trend.eyebrow} title={content.trend.title} description={content.trend.description} id="trend-title" />
             <div className="trend-cards">
               <figure className="trend-photo">
-                <Image src="/images/shopping-context.png" alt={locale === "ko" ? "옷과 원단을 살펴보며 스마트폰으로 쇼핑 정보를 비교하는 장면" : "服と生地を見ながらスマートフォンで買い物情報を比較する場面"} fill sizes="(max-width: 900px) 90vw, 660px" />
-                <figcaption>{locale === "ko" ? "상품보다 먼저, 고객의 상황을 이해하는 쇼핑" : "商品より先に、買い物の状況を理解する"}</figcaption>
+                <Image src="/images/shopping-context.png" alt={locale === "en" ? "Comparing shopping information on a phone while examining clothing and fabric" : locale === "ko" ? "옷과 원단을 살펴보며 스마트폰으로 쇼핑 정보를 비교하는 장면" : "服と生地を見ながらスマートフォンで買い物情報を比較する場面"} fill sizes="(max-width: 900px) 90vw, 660px" />
+                <figcaption>{locale === "en" ? "Shopping that starts with the customer’s needs" : locale === "ko" ? "상품보다 먼저, 고객의 상황을 이해하는 쇼핑" : "商品より先に、買い物の状況を理解する"}</figcaption>
               </figure>
               <div className="trend-card trend-card--before">
                 <span className="trend-card-label"><Search aria-hidden="true" />{content.trend.beforeLabel}</span>
                 <p>{content.trend.beforeExample}</p>
               </div>
-              <div className="trend-shift"><ArrowRight size={16} aria-hidden="true" />{locale === "ko" ? "탐색 방식의 확장" : "探し方の広がり"}</div>
+              <div className="trend-shift"><ArrowRight size={16} aria-hidden="true" />{locale === "en" ? "A new way to discover" : locale === "ko" ? "탐색 방식의 확장" : "探し方の広がり"}</div>
               <div className="trend-recommendation"><ContextShoppingDemo locale={locale} label={content.trend.afterLabel} description={content.trend.afterExample} /></div>
               <div className="trend-points"><p className="trend-point"><Check aria-hidden="true" />{content.trend.conclusion}</p></div>
             </div>
@@ -144,7 +150,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
                   <div className="platform-card-media">
                     <Image
                       src={card.id === "naver-shopping-agent" ? "/images/platform-naver-editorial.png" : card.id === "google-merchant-center" ? "/images/platform-merchant-editorial.png" : "/images/platform-google-editorial.png"}
-                      alt={locale === "ko" ? `${card.title}의 쇼핑 데이터 변화를 나타낸 이미지` : `${card.title}の商品データの変化を表す画像`}
+                      alt={locale === "en" ? `${card.title}: changes in shopping data` : locale === "ko" ? `${card.title}의 쇼핑 데이터 변화를 나타낸 이미지` : `${card.title}の商品データの変化を表す画像`}
                       fill
                       sizes="(max-width: 680px) 90vw, (max-width: 900px) 46vw, 380px"
                     />
@@ -153,7 +159,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
                   <div className="platform-card-marker"><span>{String(index + 1).padStart(2, "0")}</span><ArrowUpRight aria-hidden="true" /></div>
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
-                  {card.takeaway && <p className="source-takeaway"><strong>{locale === "ko" ? "읽어야 할 변화" : "注目する変化"}</strong>{card.takeaway}</p>}
+                  {card.takeaway && <p className="source-takeaway"><strong>{locale === "en" ? "What is changing" : locale === "ko" ? "읽어야 할 변화" : "注目する変化"}</strong>{card.takeaway}</p>}
                   <div className="source-meta"><span>{card.date}</span><span>{card.scope}</span></div>
                   <ExternalSource card={card} />
                 </article>
@@ -224,8 +230,8 @@ export default function LandingPage({ locale }: { locale: Locale }) {
             <SectionHeading
               number="07 / 08"
               eyebrow="HOW SHOPLAYER WORKS"
-              title={locale === "ko" ? "ShopLayer의 운영은 이렇게 이어집니다." : "ShopLayerの運用は、こうつながります。"}
-              description={locale === "ko" ? "등록과 연동에서 진단, 최적화, 캠페인 운영까지. AI와 ShopLayer 운영팀이 쇼핑몰과 상품 데이터를 함께 관리하고, 모니터링에서 찾은 변화를 다음 개선으로 이어갑니다." : "登録・連携から診断、最適化、広告運用まで。AIとShopLayerの担当者がサイトと商品データを一緒に管理し、モニタリングで見つけた変化を次の改善につなげます。"}
+              title={locale === "en" ? "How ShopLayer works, from start to finish." : locale === "ko" ? "ShopLayer의 운영은 이렇게 이어집니다." : "ShopLayerの運用は、こうつながります。"}
+              description={locale === "en" ? "From connection and diagnosis to optimization and campaign operations, AI and the ShopLayer team manage store and product data together. Monitoring informs the next improvements." : locale === "ko" ? "등록과 연동에서 진단, 최적화, 캠페인 운영까지. AI와 ShopLayer 운영팀이 쇼핑몰과 상품 데이터를 함께 관리하고, 모니터링에서 찾은 변화를 다음 개선으로 이어갑니다." : "登録・連携から診断、最適化、広告運用まで。AIとShopLayerの担当者がサイトと商品データを一緒に管理し、モニタリングで見つけた変化を次の改善につなげます。"}
               id="operations-title"
             />
             <OperationsFlow locale={locale} />
@@ -241,7 +247,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
                   <summary><span>{String(index + 1).padStart(2, "0")}. {item.question}</span></summary>
                   <div className="faq-answer">
                     <p>{item.answer}</p>
-                    {index === 1 && <a className="source-link faq-source" href={aiSearchGuide} target="_blank" rel="noopener noreferrer">{locale === "ko" ? "Google 공식 AI 검색 가이드" : "Google公式 AI検索ガイド"}<ArrowUpRight aria-hidden="true" /></a>}
+                    {index === 1 && <a className="source-link faq-source" href={aiSearchGuide} target="_blank" rel="noopener noreferrer">{locale === "en" ? "Google’s official AI search guide" : locale === "ko" ? "Google 공식 AI 검색 가이드" : "Google公式 AI検索ガイド"}<ArrowUpRight aria-hidden="true" /></a>}
                   </div>
                 </details>
               ))}
@@ -264,11 +270,11 @@ export default function LandingPage({ locale }: { locale: Locale }) {
       <footer className="site-footer">
         <div className="footer-inner footer-minimal">
           <div className="footer-brand">
-            <Link className="brand" href={locale === "ko" ? "/" : "/ja"}><Layers3 className="brand-icon" aria-hidden="true" /><span>ShopLayer</span></Link>
+            <Link className="brand" href={localePath[locale]}><Layers3 className="brand-icon" aria-hidden="true" /><span>ShopLayer</span></Link>
             <p>{content.footer.description}</p>
           </div>
           <div className="footer-legal">
-            <Link className="footer-privacy" href={locale === "ko" ? "/privacy" : "/ja/privacy"}>{locale === "ko" ? "개인정보 처리방침" : "プライバシーポリシー"}</Link>
+            <Link className="footer-privacy" href={privacyPath[locale]}>{locale === "en" ? "Privacy policy" : locale === "ko" ? "개인정보 처리방침" : "プライバシーポリシー"}</Link>
             <p className="footer-copyright">ShopLayer © All rights reserved</p>
           </div>
         </div>

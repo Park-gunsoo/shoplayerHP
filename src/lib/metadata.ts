@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { siteContent, type Locale } from "@/content/site-content";
 import { isPublicReady, publicSiteUrl } from "@/lib/site-config";
+import { locales, localePath, privacyPath, openGraphLocale } from "@/lib/locales";
 
 export const siteMetadataBase = publicSiteUrl
   ? new URL(publicSiteUrl)
@@ -11,12 +12,13 @@ export const siteMetadataBase = publicSiteUrl
 
 export function pageMetadata(locale: Locale): Metadata {
   const { title, description } = siteContent[locale].meta;
-  const path = locale === "ko" ? "/" : "/ja";
+  const path = localePath[locale];
   const canonical = publicSiteUrl ? new URL(path, publicSiteUrl).toString() : undefined;
   const languages = publicSiteUrl
     ? {
         ko: new URL("/", publicSiteUrl).toString(),
         ja: new URL("/ja", publicSiteUrl).toString(),
+        en: new URL("/en", publicSiteUrl).toString(),
       }
     : undefined;
   const image = publicSiteUrl
@@ -36,8 +38,8 @@ export function pageMetadata(locale: Locale): Metadata {
     openGraph: {
       type: "website",
       siteName: "ShopLayer",
-      locale: locale === "ko" ? "ko_KR" : "ja_JP",
-      alternateLocale: locale === "ko" ? "ja_JP" : "ko_KR",
+      locale: openGraphLocale[locale],
+      alternateLocale: locales.filter((language) => language !== locale).map((language) => openGraphLocale[language]),
       title,
       description,
       url: canonical,
@@ -54,8 +56,9 @@ export function pageMetadata(locale: Locale): Metadata {
 
 export function privacyPageMetadata(locale: Locale): Metadata {
   const base = pageMetadata(locale);
-  const title = locale === "ko" ? "개인정보 처리방침 | ShopLayer" : "プライバシーポリシー | ShopLayer";
-  const description = locale === "ko" ? "ShopLayer 홈페이지의 개인정보 처리 목적, 항목, 보유 기간과 이용자의 권리를 안내합니다." : "ShopLayerサイトの個人情報の目的、項目、保存期間、利用者の権利をご案内します。";
-  const canonical = publicSiteUrl ? new URL(locale === "ko" ? "/privacy" : "/ja/privacy", publicSiteUrl).toString() : undefined;
-  return { ...base, title, description, alternates: canonical && publicSiteUrl ? { canonical, languages: { ko: new URL("/privacy", publicSiteUrl).toString(), ja: new URL("/ja/privacy", publicSiteUrl).toString() } } : undefined, openGraph: { ...base.openGraph, title, description, url: canonical }, twitter: { ...base.twitter, title, description } };
+  const siteUrl = publicSiteUrl;
+  const title = locale === "en" ? "Privacy Policy | ShopLayer" : locale === "ko" ? "개인정보 처리방침 | ShopLayer" : "プライバシーポリシー | ShopLayer";
+  const description = locale === "en" ? "How ShopLayer handles inquiry information, retention and your privacy rights." : locale === "ko" ? "ShopLayer 홈페이지의 개인정보 처리 목적, 항목, 보유 기간과 이용자의 권리를 안내합니다." : "ShopLayerサイトの個人情報の目的、項目、保存期間、利用者の権利をご案内します。";
+  const canonical = publicSiteUrl ? new URL(privacyPath[locale], publicSiteUrl).toString() : undefined;
+  return { ...base, title, description, alternates: canonical && siteUrl ? { canonical, languages: Object.fromEntries(locales.map((language) => [language, new URL(privacyPath[language], siteUrl).toString()])) } : undefined, openGraph: { ...base.openGraph, title, description, url: canonical }, twitter: { ...base.twitter, title, description } };
 }
