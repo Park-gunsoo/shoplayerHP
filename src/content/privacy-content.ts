@@ -20,11 +20,11 @@ export const privacyContent = {
       ],
       [
         "처리 위탁과 메일 전달",
-        "Vercel Inc.는 홈페이지 호스팅과 신청 서버 처리를, Resend(Plus Five Five, Inc.)는 신청 메일 전송을, Google LLC의 Gmail은 운영팀 메일 수신·보관을 담당합니다. 신청 정보는 이 업무에 필요한 범위로 전달됩니다. 문의 정보를 판매하거나 별도의 마케팅 목적으로 제3자에게 제공하지 않습니다. 법령에 근거하거나 별도 동의를 받은 경우는 예외입니다."
+        "Vercel Inc.는 홈페이지 호스팅과 신청 서버 처리를, 후이즈(WHOIS)는 기존 업무메일 계정의 SMTP를 통한 신청 메일 전송을, Google LLC의 Gmail은 운영팀 메일 수신·보관을 담당합니다. 신청 정보는 이 업무에 필요한 범위로 전달됩니다. 문의 정보를 판매하거나 별도의 마케팅 목적으로 제3자에게 제공하지 않습니다. 법령에 근거하거나 별도 동의를 받은 경우는 예외입니다."
       ],
       [
         "국외 처리 안내",
-        "신청 시 입력 정보와 동의 기록이 네트워크를 통해 해외 서비스로 전달됩니다. Resend는 일본 리전에서 메일을 발송하고 메시지·발송 기록은 미국에 보관합니다. 현재 Free 플랜의 메일·로그 보유 기간은 30일입니다. Vercel 및 Gmail도 미국 등 해외 운영 인프라에서 필요한 정보를 처리할 수 있습니다. 수신 메일은 위 상담 보유 기간에 따라 관리하며 각 업체의 보안·운영 기록은 해당 업체 정책을 따릅니다. 관련 내용은 아래 업체별 공식 방침에서 확인할 수 있고, 국외 처리를 원하지 않으면 온라인 신청을 중단하거나 개인정보 문의처로 연락할 수 있습니다."
+        "신청 시 입력 정보와 동의 기록이 네트워크를 통해 Vercel 서버에서 처리되고 후이즈메일을 거쳐 Gmail로 전달됩니다. Vercel 및 Gmail은 미국 등 해외 운영 인프라에서 필요한 정보를 처리할 수 있습니다. 운영팀이 수신한 메일은 위 상담 보유 기간에 따라 관리하며, 각 업체의 보안·운영 기록은 해당 업체 정책을 따릅니다. 관련 내용은 아래 업체별 공식 방침에서 확인할 수 있고, 국외 처리를 원하지 않으면 온라인 신청을 중단하거나 개인정보 문의처로 연락할 수 있습니다."
       ],
       [
         "이용자의 권리와 행사 방법",
@@ -61,11 +61,11 @@ export const privacyContent = {
       ],
       [
         "委託先とメールの送信",
-        "Vercel Inc.はサイトのホスティングと申込サーバー処理、Resend（Plus Five Five, Inc.）は申込メールの配信、Google LLCのGmailは運用チームのメール受信と保管を担当します。業務に必要な範囲で申込情報を渡します。情報を販売したり、別のマーケティング目的で第三者へ提供したりしません。ただし、法令に基づく場合や別途同意がある場合を除きます。"
+        "Vercel Inc.はサイトと申込サーバーの運用、WHOISは既存の業務メールアカウントのSMTPによる申込メール送信、Google LLCのGmailは運用チームのメール受信・保管を担当します。業務に必要な範囲で申込情報を渡します。情報を販売したり別のマーケティング目的で第三者に提供したりしません。ただし、法令に基づく場合や別途同意がある場合を除きます。"
       ],
       [
         "国外での取り扱い",
-        "申込時に、入力情報と同意記録がネットワークを通じて海外のサービスへ送信されます。Resendの送信リージョンは日本ですが、メッセージと配信記録は米国で保存されます。現在のFreeプランではメールとログを30日間保持します。VercelとGmailも米国などの海外インフラで必要な情報を処理することがあります。受信メールは上記の相談保存期間で管理し、各社の運用・セキュリティ記録には各社の方針が適用されます。下記の公式方針をご確認ください。国外での処理を希望しない場合はオンライン申込を中止するか、個人情報窓口へご連絡ください。"
+        "申込時の情報と同意記録は、ネットワークを通じてVercelサーバーで処理され、WHOISのメールサービスからGmailへ送られます。VercelとGmailは米国などの海外インフラで必要な情報を処理する場合があります。受信メールは上記の相談保存期間で管理し、各社の安全管理・運用記録には各社の方針が適用されます。下記の公式方針をご確認ください。国外での処理を希望しない場合はオンライン申込を中止するか、個人情報窓口へご連絡ください。"
       ],
       [
         "利用者の権利",
@@ -102,11 +102,11 @@ export const privacyContent = {
       ],
       [
         "Service providers and delivery",
-        "Vercel Inc. hosts the website and processes application requests. Resend (Plus Five Five, Inc.) delivers application emails. Google LLC’s Gmail receives and stores the operations team’s email. Information is shared only as needed for these tasks. We do not sell inquiry information or provide it to third parties for separate marketing, except where required by law or separately agreed."
+        "Vercel Inc. hosts the website and handles application requests. WHOIS sends application emails through the existing business account using SMTP. Google LLC’s Gmail receives and stores the operations team’s email. Information is shared only as needed for these tasks. We do not sell inquiry information or provide it for separate third-party marketing, except as required by law or separately agreed."
       ],
       [
         "International processing",
-        "Submitting an application sends its information and consent record over the network to overseas services. Resend sends from its Japan region, while message content and delivery logs are stored in the United States. Email and log retention on the current Free plan is 30 days. Vercel and Gmail may also process necessary information on overseas infrastructure, including in the United States. Received email follows the consultation retention period above; provider security and operational records follow their respective policies. See the official provider policies below. If you do not want this international processing, do not submit the online form or contact our privacy address."
+        "Application information and consent records are processed by the Vercel server and sent over the network through WHOIS Mail to Gmail. Vercel and Gmail may process necessary information on overseas infrastructure, including in the United States. Received email follows the consultation retention period above; provider security and operational records follow their respective policies. See the official provider policies below. If you do not want this international processing, do not submit the online form or contact our privacy address."
       ],
       [
         "Your rights",

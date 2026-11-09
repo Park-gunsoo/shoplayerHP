@@ -1,5 +1,14 @@
 # ShopLayer Website 현재 상태
 
+## 2026-11-09 후이즈 SMTP 전환 (비밀번호 설정 대기)
+
+- 사용자가 후이즈 SMTP 활성화·실제 수신 확인·운영 반영을 명시적으로 요청했다. 후이즈 POP3 설정을 새로 열어 POP3/SMTP `사용함` 저장 상태를 확인했다.
+- 확인한 계정은 `master@shoplayer.co.kr`, 서버는 `smtp.whoisworks.com`, 포트 587 및 STARTTLS 필수다. 수신자는 `gundoll2.sj@gmail.com`이다.
+- 제공 이미지의 비밀번호로 인증을 시도했으나 SMTP 535로 거부됐다. 값을 출력하거나 커밋하지 않았고 해당 임시 환경 파일은 제거했다. Vercel의 `SMTP_PASSWORD` Production Secret 입력창을 준비해 사용자의 현재 비밀번호 입력·저장을 기다린다. 사용자에게 Value 위치를 안내하고 해당 칸에 포커스를 놓았다.
+- 코드는 Nodemailer SMTP로 교체했으며 Resend SDK를 제거했다. TLS 인증서 검증을 유지한다. SMTP에는 Resend 방식의 전역 idempotency가 없으므로 서버 인스턴스 내 중복 방지와 동일 Message-ID를 사용하며 전역 중복 방지를 보장하지 않는다.
+- SMTP 전환 테스트 8개와 타입 포함 빌드 통과. 개인정보 안내와 처리방침을 후이즈메일 전송·Gmail 수신 기준으로 수정했다. 실제 발송·수신과 운영 반영은 아직 완료하지 않았다.
+- 다음 단계: SMTP_PASSWORD 저장 확인 → 최종 소스 검수 배포 → 실제 Gmail 수신 확인 → main 반영·운영 배포 확인. DNS 인증은 더 이상 필요하지 않다. 보안 업데이트 선택은 이전 질문 이후 미응답 상태이며 이번 전환 요청에서 별도 승인으로 간주하지 않았다.
+
 ## 2026-11-09 직접 발송·개인정보 동의 구현 (DNS 인증 대기)
 
 - 사용자 추가 지시에 따라 mailto 신청을 `POST /api/applications` 기반의 직접 발송으로 교체하는 코드를 구현했다. Resend Free 리소스 `shoplayer-applications`(`ir_4N9AHT41CDTph2kG`)를 Vercel `shoplayerhp` 운영 환경에 연결했으며 API 키는 서버 환경에만 둔다.

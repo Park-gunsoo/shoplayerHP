@@ -1,6 +1,6 @@
 import { createHash, randomUUID } from "node:crypto";
-import { Resend } from "resend";
-import { applicationEmailText, validateApplication } from "@/lib/application";
+import { sendApplicationMail } from "@/lib/application-mail";
+import { validateApplication } from "@/lib/application";
 import { publicContactEmail } from "@/lib/site-config";
 
 export const runtime = "nodejs";
@@ -9,6 +9,7 @@ export const runtime = "nodejs";
 // This is deliberately not presented as a distributed/global rate limit.
 const attempts = new Map<string, { count: number; resetAt: number }>();
 const salt = randomUUID();
+const deliveries = new Map<string, { fingerprint: string; expires: number; result: Promise<boolean> }>();
 const windowMs = 10 * 60 * 1000;
 const maxBodyBytes = 16_000;
 
@@ -39,9 +40,7 @@ export async function POST(request: Request) {
   const data = validateApplication(input);
   if (!data) return response("invalid_fields", 400);
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const domain = process.env.RESEND_EMAIL_DOMAIN;
-  if (!apiKey || domain !== "notify.shoplayer.kr") return response("unavailable", 503);
+  if (!process.env.SMTP_PASSWORD) return response("unavailable", 503);
 
   const now = Date.now();
   for (const [key, entry] of attempts) if (entry.resetAt <= now) attempts.delete(key);
@@ -52,22 +51,22 @@ export async function POST(request: Request) {
   if (attempts.size >= 1000 && !attempts.has(clientKey)) return response("rate_limited", 429);
   attempts.set(clientKey, { ...entry, count: entry.count + 1 });
 
+  const fingerprint = createHash("sha256").update(JSON.stringify(data)).digest("hex");
+  for (const [id, delivery] of deliveries) if (delivery.expires <= now) deliveries.delete(id);
+  const prior = deliveries.get(data.requestId);
+  if (prior && prior.fingerprint !== fingerprint) return response("invalid_fields", 409);
+  if (!prior && deliveries.size >= 1000) return response("rate_limited", 429);
+  const delivery = prior ?? { fingerprint, expires: now + windowMs, result: sendApplicationMail(data, publicContactEmail) };
+  deliveries.set(data.requestId, delivery);
   try {
-    const resend = new Resend(apiKey);
-    const { data: sent, error } = await resend.emails.send({
-      from: `ShopLayer <applications@${domain}>`,
-      to: [publicContactEmail],
-      replyTo: data.email,
-      subject: "[ShopLayer] 새로운 도입 신청 / New application",
-      text: applicationEmailText(data),
-    }, { idempotencyKey: `shoplayer-application/${data.requestId}` });
-    if (error || !sent?.id) {
-      console.error("Application mail rejected", { code: error?.name ?? "missing_message_id" });
+    if (!await delivery.result) {
+      deliveries.delete(data.requestId);
       return response("send_failed", 502);
     }
     return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
   } catch {
-    console.error("Application mail transport failed");
+    deliveries.delete(data.requestId);
+    console.error("Application SMTP transport failed");
     return response("send_failed", 502);
   }
 }
