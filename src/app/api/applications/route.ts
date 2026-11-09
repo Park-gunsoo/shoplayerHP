@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from "node:crypto";
 import { sendApplicationMail } from "@/lib/application-mail";
 import { validateApplication } from "@/lib/application";
-import { publicContactEmail } from "@/lib/site-config";
+import { applicationRecipients } from "@/lib/site-config";
 
 export const runtime = "nodejs";
 
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
   const prior = deliveries.get(data.requestId);
   if (prior && prior.fingerprint !== fingerprint) return response("invalid_fields", 409);
   if (!prior && deliveries.size >= 1000) return response("rate_limited", 429);
-  const delivery = prior ?? { fingerprint, expires: now + windowMs, result: sendApplicationMail(data, publicContactEmail) };
+  const delivery = prior ?? { fingerprint, expires: now + windowMs, result: sendApplicationMail(data, applicationRecipients) };
   deliveries.set(data.requestId, delivery);
   try {
     if (!await delivery.result) {

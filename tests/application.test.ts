@@ -24,7 +24,7 @@ beforeEach(() => {
   mock.method(nodemailer, "createTransport", () => ({
     sendMail: async (payload: Record<string, unknown>) => {
       calls.push({payload, key: String(payload.messageId)});
-      return { accepted: ["gundoll2.sj@gmail.com"], messageId: "test-message" };
+      return { accepted: ["gundoll2.sj@gmail.com", "sjcho77331911@gmail.com"], messageId: "test-message" };
     }, close: () => {},
   }) as never);
 });
@@ -73,11 +73,19 @@ test("sends only to the configured recipient and uses the applicant only as repl
   const response = await POST(request({ ...input, to: "attacker@example.com", from: "attacker@example.com" }));
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { ok: true });
-  assert.equal(calls[0].payload.to, "gundoll2.sj@gmail.com");
+  assert.deepEqual(calls[0].payload.to, ["gundoll2.sj@gmail.com", "sjcho77331911@gmail.com"]);
   assert.deepEqual(calls[0].payload.from, {name: "ShopLayer", address: "master@shoplayer.co.kr"});
   assert.equal(calls[0].payload.replyTo, input.email);
   assert.ok(String(calls[0].payload.text).includes(input.note));
   assert.ok(String(calls[0].payload.text).includes(PRIVACY_VERSION));
+});
+
+test("partial recipient rejection does not report complete success", async () => {
+  mock.restoreAll();
+  mock.method(nodemailer, "createTransport", () => ({sendMail: async () => ({accepted: ["gundoll2.sj@gmail.com"], rejected: ["sjcho77331911@gmail.com"]}), close: () => {}}) as never);
+  const response = await POST(request());
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), {ok: false, code: "send_failed"});
 });
 
 test("same-instance retries reuse one send and a stable message ID", async () => {

@@ -24,7 +24,7 @@ GitHub: https://github.com/Park-gunsoo/shoplayerHP
 
 Vercel 프로젝트는 parkgunsoo-s-projects/shoplayerhp이며 저장소 main 브랜치와 연결했습니다. 변경을 main에 올리면 운영 배포가 생성됩니다. 실제 배포 상태와 주소는 Vercel 대시보드에서 확인할 수 있습니다.
 
-한국어 `/`, 일본어 `/ja`, 영어 `/en`과 각 언어의 개인정보 처리방침을 제공합니다. 개인정보 동의를 받은 신청은 `POST /api/applications`에서 후이즈 SMTP로 직접 발송합니다. 수신 주소는 `gundoll2.sj@gmail.com`이며 `CONTACT_EMAIL`로 재정의할 수 있습니다. 발신은 `master@shoplayer.co.kr`, 답장 주소는 신청자 이메일입니다. 별도 신청 DB는 없고 실패하면 입력 내용을 유지합니다.
+한국어 `/`, 일본어 `/ja`, 영어 `/en`과 각 언어의 개인정보 처리방침을 제공합니다. 개인정보 동의를 받은 신청은 `POST /api/applications`에서 후이즈 SMTP로 직접 발송합니다. 수신 주소는 `gundoll2.sj@gmail.com`(기본 수신자는 `CONTACT_EMAIL`로 재정의 가능)과 `sjcho77331911@gmail.com`입니다. 발신은 `master@shoplayer.co.kr`, 답장 주소는 신청자 이메일입니다. 두 수신자가 모두 SMTP 서버에서 수락되면 접수 완료·담당자 연락 안내창과 확인 버튼을 표시합니다. 별도 신청 DB는 없고 실패하면 입력 내용을 유지합니다.
 
 현재 후이즈메일 비밀번호를 서버의 `SMTP_PASSWORD` Secret에 설정해야 합니다. 비밀번호를 클라이언트나 저장소에 넣지 마세요. API 규칙은 `API_RULES.md`, 입력 검증·수신자 고정·실패 응답·재시도 검증은 `npx tsx --test tests/application.test.ts`를 참고하세요.
 

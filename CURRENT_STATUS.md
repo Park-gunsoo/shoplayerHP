@@ -1,5 +1,11 @@
 # ShopLayer Website 현재 상태
 
+## 2026-11-09 접수 완료 안내창·추가 수신자
+
+- 발송 성공 시 접수 완료와 담당자 후속 연락 안내를 모달로 표시하며 확인 버튼과 Escape로 닫을 수 있다. 한·일·영 모두 적용했다. 실패 시에는 완료 창을 띄우지 않는다.
+- 신청 메일 수신자로 `sjcho77331911@gmail.com`을 추가했다. 기존 `gundoll2.sj@gmail.com`과 두 주소 모두 SMTP 서버가 수락해야 성공 응답한다. 공개 문의·개인정보 연락처는 기존 주소를 유지한다.
+- 두 수신자 지정과 일부 수신자 거부를 포함한 검증 9개, 타입 포함 빌드, 변경 파일 린트를 통과했다.
+
 ## 2026-11-09 후이즈 SMTP 실제 수신 검증 완료
 
 - 사용자가 Vercel `SMTP_PASSWORD` Production Secret을 저장한 뒤 검수용 운영 환경에서 실제 신청을 제출했다. `master@shoplayer.co.kr` → `gundoll2.sj@gmail.com` 발송 및 Gmail INBOX 수신을 확인했다. 수신 시각은 2026-11-09 13:40:16 KST, 검증 표지는 `SL-WHOIS-CHECK-20261109-A4`, Gmail 메시지 ID는 `1a1be9b779083e1d`다.

@@ -16,6 +16,11 @@
 .directContact a { color: #284e91; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
 .status[data-state="error"] { color: #a32828; }
 .status[data-state="success"] { color: #216241; }
+.successDialog { width: min(440px, calc(100vw - 36px)); max-height: calc(100dvh - 48px); padding: 30px; border: 1px solid #d5dfed; border-radius: 20px; background: #fff; color: #17294e; box-shadow: 0 24px 80px rgba(4,15,43,.3); }
+.successDialog::backdrop { background: rgba(10,23,66,.6); }
+.successDialog h2 { margin: 0; font-size: 23px; line-height: 1.4; letter-spacing: -.03em; }
+.successDialog p { margin: 14px 0 24px; color: #52627b; font-size: 15px; line-height: 1.7; }
+.dialogButton { width: 100%; }
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
 .fields label { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 12px; font-weight: 750; }
 .fields .full { grid-column: 1 / -1; }

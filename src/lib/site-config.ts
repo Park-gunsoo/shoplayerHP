@@ -23,3 +23,4 @@ export const publicSiteUrl = isPublicReady ? configuredSiteUrl : null;
 // Public application address confirmed by the owner. Keep the existing search
 // indexing gate independent of this fallback until publication is configured.
 export const publicContactEmail = configuredContactEmail ?? "gundoll2.sj@gmail.com";
+export const applicationRecipients = [...new Set([publicContactEmail, "sjcho77331911@gmail.com"])];

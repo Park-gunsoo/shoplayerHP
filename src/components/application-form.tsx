@@ -23,7 +23,8 @@ const copy = {
     refusal: "동의를 거부할 수 있으나, 미동의 시 온라인 신청이 어렵습니다.",
     processing: "신청은 후이즈메일을 통해 전달되어 Gmail로 접수됩니다. 국외 처리 및 업체별 보관 정보는 처리방침에서 확인할 수 있습니다.",
     submit: "ShopLayer 신청하기", sending: "신청 보내는 중…",
-    success: "신청을 접수했습니다. 내용을 확인한 뒤 입력하신 이메일로 연락드리겠습니다.",
+    successTitle: "정상적으로 접수되었습니다.", confirm: "확인",
+    success: "담당자가 내용을 확인한 후 입력하신 이메일로 연락드리겠습니다.",
     failure: "전송 완료를 확인하지 못했습니다. 입력 내용은 유지됩니다. 잠시 후 다시 시도하거나 아래 이메일로 문의해 주세요.",
     invalid: "입력한 내용과 개인정보 동의를 확인해 주세요.", limited: "요청이 많습니다. 잠시 후 다시 시도해 주세요.",
     direct: "문의 이메일", privacyNote: "상담에 필요한 정보만 입력해 주세요. 주민등록번호 등 민감한 정보는 적지 마세요.",
@@ -37,7 +38,8 @@ const copy = {
     summary: ["項目：担当者名、メール、サイト・ブランド名（任意：URL、相談内容）", "目的：申込確認、導入相談と回答", "保存期間：相談への対応完了まで。完了後、速やかに削除します。"],
     refusal: "同意を拒否できますが、同意がない場合はオンライン申込をご利用いただけません。",
     processing: "申込内容はフーイズメール経由でGmailへ届きます。国外での処理と各社の保存期間はポリシーをご確認ください。",
-    submit: "ShopLayerに申し込む", sending: "送信中…", success: "お申し込みを受け付けました。内容を確認し、ご入力のメールへご連絡します。",
+    successTitle: "お申し込みを受け付けました。", confirm: "確認",
+    submit: "ShopLayerに申し込む", sending: "送信中…", success: "担当者が内容を確認し、ご入力のメールアドレスへご連絡します。",
     failure: "送信完了を確認できませんでした。入力内容は保持されています。時間をおいて再試行するか、下記のメールへお問い合わせください。",
     invalid: "入力内容と個人情報への同意をご確認ください。", limited: "リクエストが多いため、しばらくしてから再試行してください。",
     direct: "お問い合わせメール", privacyNote: "相談に必要な情報のみご入力ください。個人識別番号などの機密情報は記入しないでください。",
@@ -51,7 +53,8 @@ const copy = {
     summary: ["Information: name, email and store or brand name (optional: URL and inquiry details)", "Purpose: application review, onboarding consultation and replies", "Retention: until the inquiry is resolved, followed by prompt deletion."],
     refusal: "You may decline consent, but the online application requires it.",
     processing: "Applications are sent through WHOIS Mail to Gmail. See the privacy policy for international processing and provider retention details.",
-    submit: "Apply for ShopLayer", sending: "Sending application…", success: "Your application has been received. We will review it and reply to your email.",
+    successTitle: "Your application has been received.", confirm: "OK",
+    submit: "Apply for ShopLayer", sending: "Sending application…", success: "Our team will review your application and contact you at the email address you provided.",
     failure: "We could not confirm that your application was sent. Your details have been kept in this form. Please try again shortly or contact the email below.",
     invalid: "Please check your details and privacy consent.", limited: "Too many requests. Please try again later.",
     direct: "Contact email", privacyNote: "Provide only the information needed for your inquiry. Do not include sensitive identifiers or other confidential information.",
@@ -64,6 +67,7 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
   const [message, setMessage] = useState("");
   const inFlight = useRef(false);
   const previousRequest = useRef<{ fingerprint: string; id: string } | null>(null);
+  const successDialog = useRef<HTMLDialogElement>(null);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -93,9 +97,10 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
         return;
       }
       setState("success");
-      setMessage(t.success);
+      setMessage(`${t.successTitle} ${t.success}`);
       previousRequest.current = null;
       form.reset();
+      successDialog.current?.showModal();
     } catch {
       setState("error");
       setMessage(t.failure);
@@ -129,6 +134,11 @@ export default function ApplicationForm({ locale, recipient }: { locale: Locale;
       {message ? <p className={styles.status} data-state={state} role={state === "error" ? "alert" : "status"}>{message}</p> : null}
       {recipient ? <p className={styles.directContact}>{t.direct}: <a href={`mailto:${recipient}`}>{recipient}</a></p> : null}
       <p className={styles.privacy}>{t.privacyNote}</p>
+      <dialog ref={successDialog} className={styles.successDialog} aria-labelledby="application-success-title" aria-describedby="application-success-description">
+        <h2 id="application-success-title">{t.successTitle}</h2>
+        <p id="application-success-description">{t.success}</p>
+        <button type="button" className={`${styles.submit} ${styles.dialogButton}`} onClick={() => successDialog.current?.close()}>{t.confirm}</button>
+      </dialog>
     </form>
   );
 }

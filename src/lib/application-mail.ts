@@ -4,7 +4,7 @@ import { applicationEmailText, type Application } from "./application";
 
 export const SMTP_SENDER = "master@shoplayer.co.kr";
 
-export async function sendApplicationMail(data: Application, recipient: string) {
+export async function sendApplicationMail(data: Application, recipients: string[]) {
   const transport = nodemailer.createTransport({
     host: "smtp.whoisworks.com", port: 587, secure: false, requireTLS: true,
     // WHOIS advertises undersized finite-field DH parameters. Exclude DHE
@@ -16,10 +16,11 @@ export async function sendApplicationMail(data: Application, recipient: string) 
   });
   try {
     const sent = await transport.sendMail({
-      from: { name: "ShopLayer", address: SMTP_SENDER }, to: recipient, replyTo: data.email,
+      from: { name: "ShopLayer", address: SMTP_SENDER }, to: recipients, replyTo: data.email,
       subject: "[ShopLayer] 새로운 도입 신청 / New application",
       text: applicationEmailText(data), messageId: `<application-${data.requestId}@shoplayer.co.kr>`,
     });
-    return sent.accepted?.some((address) => String(address).toLowerCase() === recipient.toLowerCase()) === true;
+    const accepted = new Set(sent.accepted?.map((address) => String(address).toLowerCase()));
+    return recipients.length > 0 && recipients.every((recipient) => accepted.has(recipient.toLowerCase()));
   } finally { transport.close(); }
 }
