@@ -105,8 +105,8 @@ button { cursor: pointer; }
   margin-inline: auto;
 }
 .header-inner { display: flex; align-items: center; gap: 32px; min-height: 78px; }
-.brand { display: inline-flex; align-items: center; flex: none; gap: 10px; font-size: 21px; font-weight: 800; letter-spacing: -.055em; white-space: nowrap; }
-.brand-icon { width: 32px; height: 32px; color: #b7cdff; stroke-width: 1.9; }
+.brand { display: inline-flex; align-items: center; flex: none; min-height: 52px; padding: 8px; margin-left: -8px; }
+.shoplayer-logo { display: block; width: 180px; height: auto; flex: none; }
 .header-nav { display: flex; align-items: center; justify-content: center; flex: 1; min-width: 0; gap: clamp(14px, 2vw, 32px); }
 .header-nav a, .footer-links a { transition: color .2s ease; }
 .header-nav a { color: #d1defa; font-size: 13px; font-weight: 650; white-space: nowrap; }
@@ -535,8 +535,6 @@ main { display: block; }
   .header-inner, .section-inner, .hero-inner, .closing-inner, .footer-inner { width: min(calc(100% - 36px), var(--max-width)); }
   .site-header { position: sticky; top: 0; }
   .header-inner { min-height: 66px; gap: 10px; }
-  .brand { font-size: 18px; }
-  .brand-icon { width: 27px; height: 27px; }
   .header-nav { position: absolute; top: 66px; right: 0; left: 0; justify-content: flex-start; gap: 20px; padding: 0 18px; height: 51px; border-top: 1px solid #28447c; background: var(--navy-deep); scrollbar-width: thin; scrollbar-color: #7898d2 transparent; }
   .header-nav::-webkit-scrollbar { display: block; height: 3px; }
   .header-nav::-webkit-scrollbar-thumb { background: #7898d2; border-radius: 3px; }

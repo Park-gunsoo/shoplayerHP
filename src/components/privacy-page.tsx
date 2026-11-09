@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { localePath } from "@/lib/locales";
-import { ArrowLeft, Layers3, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
+import ShopLayerLogo from "./shoplayer-logo";
 import { privacyContent } from "@/content/privacy-content";
 import type { Locale } from "@/content/site-content";
 import { publicContactEmail } from "@/lib/site-config";
@@ -9,7 +10,7 @@ import styles from "./privacy-page.module.css";
 export default function PrivacyPage({ locale }: { locale: Locale }) {
   const t = privacyContent[locale];
   return <main className={styles.page}>
-    <header className={styles.header}><Link className={styles.brand} href={localePath[locale]}><Layers3 size={28} aria-hidden="true" />ShopLayer</Link><Link className={styles.back} href={`${localePath[locale]}#closing`}><ArrowLeft size={15} aria-hidden="true" />{t.back}</Link></header>
+    <header className={styles.header}><Link className={styles.brand} href={localePath[locale]}><ShopLayerLogo eager /></Link><Link className={styles.back} href={`${localePath[locale]}#closing`}><ArrowLeft size={15} aria-hidden="true" />{t.back}</Link></header>
     <article>
       <p className={styles.eyebrow}>PRIVACY POLICY</p><h1>{t.title}</h1><p className={styles.intro}>{t.intro}</p>
       <div className={styles.notice}><ShieldCheck size={19} aria-hidden="true" /><p>{t.updated}</p></div>

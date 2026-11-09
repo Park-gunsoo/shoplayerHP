@@ -9,7 +9,6 @@ import {
   Database,
   FileText,
   Info,
-  Layers3,
   Search,
   ShieldCheck,
   Sparkles,
@@ -20,6 +19,7 @@ import { siteContent, type Locale, type SourceCard } from "@/content/site-conten
 import { publicContactEmail } from "@/lib/site-config";
 import ApplicationForm from "./application-form";
 import { BrandLogo } from "./brand-logo";
+import ShopLayerLogo from "./shoplayer-logo";
 import CapabilityDemo from "./capability-demo";
 import ContextShoppingDemo from "./context-shopping-demo";
 import LanguageSwitch from "./language-switch";
@@ -88,8 +88,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
       <header className="site-header">
         <div className="header-inner">
           <Link className="brand" href={localePath[locale]} aria-label={locale === "en" ? "ShopLayer home" : locale === "ko" ? "ShopLayer 첫 화면" : "ShopLayerトップページ"}>
-            <Layers3 className="brand-icon" aria-hidden="true" />
-            <span>ShopLayer</span>
+            <ShopLayerLogo inverse decorative eager />
           </Link>
           <nav className="header-nav" aria-label={locale === "en" ? "Main navigation" : locale === "ko" ? "주요 메뉴" : "メインナビゲーション"}>
             {content.nav.items.map((item) => <a href={`#${item.id}`} key={item.id}>{item.label}</a>)}
@@ -270,7 +269,7 @@ export default function LandingPage({ locale }: { locale: Locale }) {
       <footer className="site-footer">
         <div className="footer-inner footer-minimal">
           <div className="footer-brand">
-            <Link className="brand" href={localePath[locale]}><Layers3 className="brand-icon" aria-hidden="true" /><span>ShopLayer</span></Link>
+            <Link className="brand" href={localePath[locale]}><ShopLayerLogo inverse /></Link>
             <p>{content.footer.description}</p>
           </div>
           <div className="footer-legal">

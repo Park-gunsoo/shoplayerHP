@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Layers3, Mail } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Mail } from "lucide-react";
+import ShopLayerLogo from "@/components/shoplayer-logo";
 
 import styles from "./returns.module.css";
 
@@ -19,7 +20,7 @@ export default function ReturnsPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <Link className={styles.brand} href="/" aria-label="ShopLayer 홈페이지">
-          <Layers3 size={27} aria-hidden="true" />ShopLayer
+          <ShopLayerLogo decorative eager />
         </Link>
         <Link className={styles.back} href="/"><ArrowLeft size={16} aria-hidden="true" />홈페이지로</Link>
       </header>

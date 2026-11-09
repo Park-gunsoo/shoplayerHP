@@ -1,6 +1,6 @@
 .page { width: min(calc(100% - 40px), 920px); margin: 0 auto; padding: 35px 0 80px; }
 .header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 55px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; color: #10245e; font-size: 24px; font-weight: 850; letter-spacing: -.04em; }
+.brand { display: inline-flex; align-items: center; flex: none; min-height: 52px; padding: 8px; margin-left: -8px; }
 .back { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: #567098; font-size: 13px; }
 .eyebrow { margin: 0 0 14px; color: #305eb2; font-size: 12px; font-weight: 800; letter-spacing: .12em; }
 .page h1 { margin: 0; color: #12295a; font-size: clamp(30px, 4vw, 45px); line-height: 1.35; letter-spacing: -.04em; word-break: keep-all; }

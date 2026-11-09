@@ -1,5 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#10245e"/>
-  <path d="M32 13 51 23 32 33 13 23 32 13Z" fill="none" stroke="#dbeafe" stroke-width="4" stroke-linejoin="round"/>
-  <path d="m13 32 19 10 19-10M13 41l19 10 19-10" fill="none" stroke="#93c5fd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="512" height="512" viewBox="0 0 512 512">
+<title>ShopLayer brand mark</title><desc>Vector outlines traced and cleaned from the user-approved ShopLayer logo preview (2026-11-09). Separate paths for symbol and each wordmark letter. No font dependence or embedded raster.</desc>
+
+<rect width="512" height="512" rx="104" fill="#FFFFFF"/>
+<g transform="translate(-22,-70)">
+<g id="symbol-accent" fill="#1E40AF" fill-rule="evenodd">
+<path id="symbol-accent-piece-1" d="M492,215 L487,206 L478,201 L407,171 L398,166 L380,159 L296,121 L281,121 L275,123 L144,189 L142,189 L70,226 L66,231 L64,236 L64,296 L66,301 L73,308 L84,312 L135,335 L142,337 L151,342 L194,360 L262,391 L274,395 L281,395 L293,390 L323,372 L345,361 L349,357 L350,354 L350,349 L348,345 L345,342 L333,336 L276,313 L200,278 L164,263 L162,261 L283,198 L290,199 L380,242 L382,242 L401,252 L420,260 L427,260 L433,258 L451,247 L487,228 L491,223 Z"/>
+</g>
+<g id="symbol-navy" fill="#10245E" fill-rule="evenodd">
+<path id="symbol-navy-piece-1" d="M492,337 L489,331 L484,326 L456,312 L454,312 L402,286 L400,284 L390,280 L382,279 L375,281 L355,292 L353,292 L347,296 L327,306 L325,306 L319,313 L318,316 L320,324 L325,329 L332,331 L410,368 L414,372 L415,375 L414,380 L409,384 L370,405 L280,457 L277,457 L268,452 L266,452 L154,396 L136,389 L131,389 L124,391 L77,415 L71,417 L68,419 L65,424 L64,433 L66,438 L71,443 L99,455 L162,485 L164,485 L262,532 L274,537 L279,537 L280,538 L281,537 L282,538 L283,537 L284,538 L285,537 L290,537 L296,535 L326,519 L457,444 L462,440 L485,428 L490,422 L492,417 Z"/>
+</g>
+</g>
 </svg>

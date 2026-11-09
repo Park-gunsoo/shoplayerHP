@@ -1,10 +1,15 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const alt = "ShopLayer — AI Commerce Data Operations";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+const logoData = readFile(join(process.cwd(), "public/logos/shoplayer/logo-white.svg"));
+
+export default async function OpenGraphImage() {
+  const logo = `data:image/svg+xml;base64,${(await logoData).toString("base64")}`;
   return new ImageResponse(
     <div
       style={{
@@ -23,8 +28,10 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", fontSize: 24, fontWeight: 700, letterSpacing: 3, color: "#a7c8ff" }}>
           AI COMMERCE OPERATIONS
         </div>
-        <div style={{ display: "flex", marginTop: 28, fontSize: 94, fontWeight: 800, letterSpacing: -4 }}>
-          ShopLayer
+        <div style={{ display: "flex", marginTop: 28 }}>
+          {/* ImageResponse embeds the supplied vector directly. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} alt="ShopLayer" width={620} height={122} />
         </div>
         <div style={{ display: "flex", marginTop: 20, fontSize: 31, lineHeight: 1.3, color: "#dae7ff" }}>
           Better product data for the next shopping experience.
