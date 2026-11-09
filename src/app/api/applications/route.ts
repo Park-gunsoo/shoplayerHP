@@ -66,11 +66,12 @@ export async function POST(request: Request) {
     return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     deliveries.delete(data.requestId);
-    const failure = error as { code?: string; responseCode?: number };
+    const failure = error as { code?: string; responseCode?: number; message?: string };
     const knownCodes = ["EAUTH", "ECONNECTION", "ETIMEDOUT", "ESOCKET", "ETLS", "EDNS", "EENVELOPE", "EMESSAGE"];
     console.error("Application SMTP transport failed", {
       code: knownCodes.includes(failure?.code ?? "") ? failure.code : "unknown",
       responseCode: typeof failure?.responseCode === "number" ? failure.responseCode : undefined,
+      connectionDetail: failure?.code === "ESOCKET" ? failure.message?.replace(/[^\s]+@[^\s]+/g, "[redacted]").slice(0, 200) : undefined,
     });
     return response("send_failed", 502);
   }

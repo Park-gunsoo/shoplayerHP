@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { DEFAULT_CIPHERS } from "node:tls";
 import { applicationEmailText, type Application } from "./application";
 
 export const SMTP_SENDER = "master@shoplayer.co.kr";
@@ -6,7 +7,9 @@ export const SMTP_SENDER = "master@shoplayer.co.kr";
 export async function sendApplicationMail(data: Application, recipient: string) {
   const transport = nodemailer.createTransport({
     host: "smtp.whoisworks.com", port: 587, secure: false, requireTLS: true,
-    tls: { minVersion: "TLSv1.2" },
+    // WHOIS advertises undersized finite-field DH parameters. Exclude DHE
+    // suites while retaining Node's cipher policy and certificate validation.
+    tls: { minVersion: "TLSv1.2", ciphers: `${DEFAULT_CIPHERS}:!DHE` },
     auth: { user: SMTP_SENDER, pass: process.env.SMTP_PASSWORD },
     connectionTimeout: 10_000, greetingTimeout: 10_000, socketTimeout: 20_000,
     disableFileAccess: true, disableUrlAccess: true,
